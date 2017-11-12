@@ -14,7 +14,7 @@ Extend from `SharedStateComponent` instead of `React.Component`. Then use `setSt
 
 This minimal example shows how how to use SharedStateComponent. It should look pretty familiar if you have worked with react before. You can do anything you would do in React in here. 
 
-The only difference from React is that `this.state` will be shared between all instances of `CountState`.
+The only difference from `React.Component` is that `this.state` will be shared between all instances of `CountState`.
 
 `CountState.js` 
 ```js
