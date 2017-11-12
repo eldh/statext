@@ -16,8 +16,8 @@ This minimal example shows how how to use SharedStateComponent. It should look p
 
 The only difference from React is that `this.state` will be shared between all instances of `CountState`.
 
-CountState.js
-```
+`CountState.js` 
+```js
 import PropTypes from 'prop-types'
 import SharedStateComponent from './SharedStateComponent'
 
@@ -42,8 +42,9 @@ export default class CountState extends SharedStateComponent {
 ```
 
 You use `CountState` in your application just like you would use any other component. It will render all instances with the same `count` value.
-App.js
-```
+
+`App.js`
+```js
 import React, { Component } from 'react'
 import CountState from './components/CountState'
 
