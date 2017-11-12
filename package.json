@@ -1,0 +1,22 @@
+{
+  "name": "shared-state",
+  "version": "1.0.0",
+  "description": "Shared state React component",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "react",
+    "state",
+    "management"
+  ],
+  "author": "eldh",
+  "license": "MIT",
+  "devDependencies": {
+    "@dooer/eslint-config-dooer": "^1.5.1",
+    "eslint": "^4.11.0",
+    "jest": "^21.2.1",
+    "react": "^16.1.0"
+  }
+}
