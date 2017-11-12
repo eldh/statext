@@ -5,15 +5,21 @@ export default class SharedStateComponent extends React.Component {
     super(props)
     this._s = this.setState
     this.setState = SharedStateComponent.setAllTheStates
-    SharedStateComponent.instances.push(this)
+    SharedStateComponent.instances[this] = this
   }
   static setAllTheStates = updater => {
     const update = s => ({ ...s, ...updater(s) })
-    for (const i of SharedStateComponent.instances) {
-      if (i) {
-        i._s(update)
-      }
-    }
+    SharedStateComponent.instances.forEach(i => {
+      i._s(update)
+    })
   }
-  static instances = []
+  static instances = Map()
+
+  componenentWillMount() {
+    SharedStateComponent.instances[this] = this
+  }
+
+  componenentWillUnmount() {
+    delete SharedStateComponent.instances[this]
+  }
 }
