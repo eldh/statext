@@ -3,23 +3,26 @@ import React from 'react'
 export default class SharedStateComponent extends React.Component {
   constructor(props) {
     super(props)
-    this._s = this.setState
+    this._setState = this.setState
     this.setState = SharedStateComponent.setAllTheStates
-    SharedStateComponent.instances[this] = this
+    SharedStateComponent._state = SharedStateComponent._state || this.constructor.state
+    this.state = SharedStateComponent._state
+    SharedStateComponent.instances.set(this, this)
+  }
+  componentWillMount() {
+    SharedStateComponent.instances.set(this, this)
+  }
+  componentWillUnmount() {
+    SharedStateComponent.instances.delete(this)
   }
   static setAllTheStates = updater => {
-    const update = s => ({ ...s, ...updater(s) })
+    SharedStateComponent._state = updater(SharedStateComponent._state)
     SharedStateComponent.instances.forEach(i => {
-      i._s(update)
+      i._setState(SharedStateComponent._state)
     })
   }
-  static instances = Map()
-
-  componenentWillMount() {
-    SharedStateComponent.instances[this] = this
+  static getState() {
+    return SharedStateComponent._state
   }
-
-  componenentWillUnmount() {
-    delete SharedStateComponent.instances[this]
-  }
+  static instances = new Map()
 }
