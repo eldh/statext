@@ -51,7 +51,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <CountState render={({ count }) => `I just wanna know what the count is: It's ${count}`} />
+        <CountState render={({ count }) => `The count is ${count}`} />
         <CountState
           render={({ count }, { increaseCount }) => <button onClick={increaseCount}>{'Click me ' + count}</button>}
         />
