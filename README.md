@@ -54,8 +54,9 @@ class App extends Component {
       <div>
         <CountState render={({ count }) => `The count is ${count}`} />
         <CountState
-          render={({ count }, { increaseCount }) => 
+          render={({ count }, { increaseCount }) => (
             <button onClick={increaseCount}>{'Click me ' + count}</button>}
+          )
         />
       </div>
     )
