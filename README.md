@@ -12,7 +12,7 @@ Extend from `SharedStateComponent` instead of `React.Component`. Then use `setSt
 
 ![Counter example](./example.gif)
 
-This minimal example shows how how to use SharedStateComponent. It should look pretty familiar if you have worked with react before. You can do anything you would do in React in here. 
+This minimal example shows how to use SharedStateComponent. It should look pretty familiar if you have worked with react before. You can do anything you would do in React in here. 
 
 The only difference from `React.Component` is that `this.state` will be shared between all instances of `CountState`.
 
@@ -55,8 +55,8 @@ class App extends Component {
         <CountState render={({ count }) => `The count is ${count}`} />
         <CountState
           render={({ count }, { increaseCount }) => (
-            <button onClick={increaseCount}>{'Click me ' + count}</button>}
-          )
+            <button onClick={increaseCount}>{'Click me ' + count}</button>
+          )}
         />
       </div>
     )
