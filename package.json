@@ -1,10 +1,11 @@
 {
-  "name": "shared-state",
-  "version": "1.0.0",
-  "description": "Shared state React component",
-  "main": "index.js",
+  "name": "statext",
+  "version": "0.0.0",
+  "description": "A small state management solution for React",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "rollup --config"
   },
   "keywords": [
     "react",
@@ -14,9 +15,16 @@
   "author": "eldh",
   "license": "MIT",
   "devDependencies": {
-    "@dooer/eslint-config-dooer": "^1.5.1",
-    "eslint": "^4.11.0",
-    "jest": "^21.2.1",
-    "react": "^16.1.0"
+    "@dooer/eslint-config-dooer": "^4.2.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.19.0",
+    "jest": "^22.4.2",
+    "react": "^16.3.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-node-resolve": "^3.3.0"
   }
 }

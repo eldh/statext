@@ -1,27 +1,38 @@
-# Shared state component
+# Statext
 
-A tiny global state management solution for React. (240 bytes gzipped, no api)
+A tiny global state management solution for React.
 
 **DISCLAIMER**
-This is probably a bad idea.
+This might be a bad idea.
+
+## Why?
+React has a great mechanism for state management with its component state and props. In some cases you want to share pieces of information across different parts of the app, and then using just normal state and props becomes cumbersome. This is commonly solved by using state libraries like redux or mobx. 
+
+However, these frameworks stray outside the react component model and can feel heavy for simpler tasks.
+
+Statext tries to provide a state management solution that feels lightweight and doesn't stray too far from the react way of doing things. It is primarily meant to used in smaller apps, or as a compliment to frameworks like apollo. 
+
+# How?
+Statext is really just a thin layer of hacks on top of React's context feature.
 
 ## API
-Extend from `SharedStateComponent` instead of `React.Component`. Then use `setState` in your component just as you normally would in React. 
+Wrap your component with the `withSharedState` higher-order component. Then use `setState` in your component just as you normally would in React. 
 
 ## Example
 
 ![Counter example](./example.gif)
 
-This minimal example shows how to use SharedStateComponent. It should look pretty familiar if you have worked with react before. You can do anything you would do in React in here. 
+This minimal example shows how to use Statext. It should look pretty familiar if you have worked with react before. 
 
-The only difference from `React.Component` is that `this.state` will be shared between all instances of `CountState`.
+The only difference from a normal react component is that `this.state` will be shared between all instances of `CountState`.
 
 `CountState.js` 
 ```js
+import React from 'react'
 import PropTypes from 'prop-types'
-import SharedStateComponent from './SharedStateComponent'
+import { withSharedState } from 'statext'
 
-export default class CountState extends SharedStateComponent {
+class CountState extends React.Component {
   static propTypes = {
     render: PropTypes.func.isRequired,
   }
@@ -39,29 +50,32 @@ export default class CountState extends SharedStateComponent {
     return this.props.render(this.state, { increaseCount: this.increaseCount })
   }
 }
+
+export default withSharedState(CountState)
 ```
 
-You use `CountState` in your application just like you would use any other component. It will render all instances with the same `count` value.
+You use `CountState` in your application just like you would use any other component. It will render all instances with the same `count` value. Your application needs to be wrapped in a `Provider`.
 
 `App.js`
 ```js
-import React, { Component } from 'react'
+import React from 'react'
+import { Provider } from 'statext'
 import CountState from './components/CountState'
 
-class App extends Component {
+export default class App extends React.Component {
   render() {
     return (
-      <div>
-        <CountState render={({ count }) => `The count is ${count}`} />
-        <CountState
-          render={({ count }, { increaseCount }) => (
-            <button onClick={increaseCount}>{'Click me ' + count}</button>
-          )}
-        />
-      </div>
+      <Provider>
+        <div>
+          <CountState render={({ count }) => `The count is ${count}`} />
+          <CountState
+            render={({ count }, { increaseCount }) => (
+              <button onClick={increaseCount}>{'Click me ' + count}</button>
+            )}
+          />
+        </div>
+      </Provider>
     )
   }
 }
-
-export default App
 ```
