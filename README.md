@@ -26,8 +26,9 @@ This minimal example shows how to use Statext. It should look pretty familiar if
 
 The only difference from a normal react component is that `this.state` will be shared between all instances of `CountState`.
 
-`CountState.js` 
 ```js
+// CountState.js
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withSharedState } from 'statext'
@@ -56,8 +57,9 @@ export default withSharedState(CountState)
 
 You use `CountState` in your application just like you would use any other component. It will render all instances with the same `count` value. Your application needs to be wrapped in a `Provider`.
 
-`App.js`
 ```js
+// App.js
+
 import React from 'react'
 import { Provider } from 'statext'
 import CountState from './components/CountState'
@@ -79,3 +81,6 @@ export default class App extends React.Component {
   }
 }
 ```
+
+## This looks similar to Unstated
+[Unstated](https://github.com/jamiebuilds/unstated) is great! Statext has actually been around longer than Unstated and takes the concept even further, removing the need for a "Subscriber" component etc.
