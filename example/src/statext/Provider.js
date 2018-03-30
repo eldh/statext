@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from './context'
 
-class RestateProvider extends Component {
+class StatexProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   }
@@ -24,4 +24,4 @@ class RestateProvider extends Component {
   }
 }
 
-export default RestateProvider
+export default StatexProvider

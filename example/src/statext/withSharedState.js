@@ -16,7 +16,10 @@ function withSharedState_(Compo) {
     }
     constructor(props) {
       super(props)
-      props.__context.setState(this._state, null, Compo)
+
+      if (!props.__context.state.store.get(Compo)) {
+        props.__context.setState(this._state, null, Compo)
+      }
     }
     get state() {
       return this.props.__context.state.store.get(Compo) || this._state

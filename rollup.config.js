@@ -2,7 +2,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 
 export default {
-  input: 'src/index.js',
+  input: 'example/src/statext/index.js',
   output: [
     {
       file: 'dist/index.js',
@@ -17,7 +17,7 @@ export default {
   plugins: [
     resolve(),
     babel({
-      exclude: 'node_modules/**', // only transpile our source code
+      exclude: 'node_modules/**',
     }),
   ],
 }
