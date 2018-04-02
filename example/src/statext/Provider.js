@@ -8,19 +8,23 @@ class StatexProvider extends Component {
   }
   state = { store: new Map() }
   _setState = (newStateInput, cb, comp) => {
-    const newStateFn = prevState => {
-      return {
-        store: prevState.store.set(
-          comp,
-          typeof newStateInput === 'function' ? newStateInput(prevState.store.get(comp)) : newStateInput
-        ),
-      }
-    }
-
-    this.setState(newStateFn, cb)
+    this.setState(({ store: oldStore }) => {
+      const newStore = new Map(oldStore)
+      const oldVal = newStore.get(comp)
+      const val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput
+      newStore.set(comp, { ...oldVal, ...val })
+      return { store: newStore }
+    }, cb)
+  }
+  _setStore = (store, cb) => {
+    this.setState(() => ({ store: new Map(store) }), cb)
   }
   render() {
-    return <Provider value={{ state: this.state, setState: this._setState }}>{this.props.children}</Provider>
+    return (
+      <Provider value={{ state: this.state, setState: this._setState, setStore: this._setStore }}>
+        {this.props.children}
+      </Provider>
+    )
   }
 }
 

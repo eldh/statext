@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Provider from './statext/Provider'
 import Logger from './statext/Logger'
+import Backer from './statext/Backer'
 import AuthButton from './AuthButton'
 import AuthInfo from './AuthInfo'
 import withSharedState from './statext/withSharedState'
 class CountState_ extends React.Component {
   state = {
     count: 0,
+    foo: 'bar',
   }
 
   increaseCount = () => {
@@ -27,12 +29,13 @@ class App extends Component {
     return (
       <Provider>
         <Logger />
-        <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>Toggle unmount</button>
+        <Backer />
+        <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>{'Toggle unmount'}</button>
         {this.state.mounted && (
           <div>
-            <AuthInfo />
+            {/* <AuthInfo />
             <AuthButton />
-            <CountState render={({ count }) => `The count is ${count}`} />
+            <CountState render={({ count }) => `The count is ${count}`} /> */}
             <CountState
               render={({ count }, { increaseCount }) => <button onClick={increaseCount}>{'Click me ' + count}</button>}
             />

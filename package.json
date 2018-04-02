@@ -1,10 +1,11 @@
 {
   "name": "statext",
   "version": "0.0.2",
-  "description": "A small state management solution for React",
+  "description": "A tiny state management solution for React",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
+    "prepublish": "npm run build",
     "build": "rollup --config"
   },
   "keywords": [
