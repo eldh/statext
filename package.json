@@ -1,6 +1,6 @@
 {
   "name": "statext",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A tiny state management solution for React",
   "main": "dist/index.js",
   "scripts": {
