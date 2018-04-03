@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Consumer } from './context'
+import withStore from './withStore'
 
 class Logger extends React.Component {
   static propTypes = {
@@ -19,10 +19,4 @@ class Logger extends React.Component {
   }
 }
 
-class StatexLoggerWrapper extends React.Component {
-  render() {
-    return <Consumer>{({ state: { store }, ...rest }) => <Logger {...rest} store={store} />}</Consumer>
-  }
-}
-
-export default StatexLoggerWrapper
+export default withStore(Logger)
