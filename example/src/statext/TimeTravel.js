@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import withStore from './withStore'
+import { withStatext } from './withSharedState'
 
 class TimeTravel extends React.Component {
   static propTypes = {
-    store: PropTypes.object.isRequired,
-    setStore: PropTypes.func.isRequired,
+    statext__: PropTypes.shape({
+      store: PropTypes.object.isRequired,
+      setStore: PropTypes.func.isRequired,
+    }),
   }
-  state = { past: this.props.store ? [this.props.store] : [], future: [] }
-  static getDerivedStateFromProps(props, { past }) {
-    if (props.store) return { past: [...past, props.store] }
+  state = { past: this.props.statext__.store ? [this.props.statext__.store] : [], future: [] }
+
+  static getDerivedStateFromProps({ statext__: { store } }, { past, future, iDidThis }) {
+    if (store) return { past: [...past, store], iDidThis: false, future: iDidThis ? future : [] }
   }
 
   render() {
@@ -24,9 +27,9 @@ class TimeTravel extends React.Component {
                 const a = newpast.pop()
                 newpast.pop()
                 const newfuture = [a, ...future]
-                return { past: newpast, future: newfuture }
+                return { past: newpast, future: newfuture, iDidThis: true }
               },
-              () => this.props.setStore(previousStore)
+              () => this.props.statext__.setStore(previousStore)
             )
           }}
         >
@@ -40,9 +43,9 @@ class TimeTravel extends React.Component {
               ({ future }) => {
                 const [next, ...newfuture] = future
                 nextStore = next
-                return { future: newfuture }
+                return { future: newfuture, iDidThis: true }
               },
-              () => this.props.setStore(nextStore)
+              () => this.props.statext__.setStore(nextStore)
             )
           }}
         >
@@ -53,4 +56,4 @@ class TimeTravel extends React.Component {
   }
 }
 
-export default withStore(TimeTravel)
+export default withStatext(TimeTravel)

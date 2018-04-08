@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import withStore from './withStore'
+import { withStatext } from './withSharedState'
 
 class Logger extends React.Component {
   static propTypes = {
-    store: PropTypes.object.isRequired,
+    statext__: PropTypes.object.isRequired,
   }
-  componentDidUpdate({ store }) {
-    this.props.store.forEach((v, k) => {
+  componentDidUpdate({ statext__: { store } }) {
+    this.props.statext__.store.forEach((v, k) => {
       if (v !== store.get(k)) {
-        console.log('last, this', store.get(k), v)
+        console.log(k.name, store.get(k), v)
       }
     })
   }
@@ -19,4 +19,4 @@ class Logger extends React.Component {
   }
 }
 
-export default withStore(Logger)
+export default withStatext(Logger)
