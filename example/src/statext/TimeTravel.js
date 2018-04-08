@@ -13,24 +13,27 @@ class TimeTravel extends React.Component {
 
   static getDerivedStateFromProps({ statext__: { store } }, { past, future, iDidThis }) {
     if (store) return { past: [...past, store], iDidThis: false, future: iDidThis ? future : [] }
+    return null
   }
 
   render() {
     return (
       <div>
         <button
+          disabled={this.state.past.length < 2}
           onClick={() => {
             const previousStore = this.state.past[this.state.past.length - 2]
-            this.setState(
-              ({ past, future }) => {
-                const newpast = [...past]
-                const a = newpast.pop()
-                newpast.pop()
-                const newfuture = [a, ...future]
-                return { past: newpast, future: newfuture, iDidThis: true }
-              },
-              () => this.props.statext__.setStore(previousStore)
-            )
+            previousStore &&
+              this.setState(
+                ({ past, future }) => {
+                  const newpast = [...past]
+                  const a = newpast.pop()
+                  newpast.pop()
+                  const newfuture = [a, ...future]
+                  return { past: newpast, future: newfuture, iDidThis: true }
+                },
+                () => this.props.statext__.setStore(previousStore)
+              )
           }}
         >
           {'<'}

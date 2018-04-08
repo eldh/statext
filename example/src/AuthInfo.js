@@ -1,10 +1,18 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import AuthState from './AuthState'
+import { css } from 'glamor'
 
 class AuthInfo extends React.Component {
   render() {
-    return <AuthState>{state => JSON.stringify(state)}</AuthState>
+    return (
+      <AuthState>
+        {({ loading, authenticated }) => (
+          <div className={css({ padding: '10px', color: loading ? 'orange' : authenticated ? 'green' : 'red' })}>
+            {loading ? 'Authenticating...' : authenticated ? 'Authenticated' : 'Not authenticated'}
+          </div>
+        )}
+      </AuthState>
+    )
   }
 }
 

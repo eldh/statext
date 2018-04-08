@@ -9,9 +9,11 @@ class AuthState extends React.Component {
   state = { authenticated: false }
 
   authenticate = () => {
-    setTimeout(() => {
-      this.setState(() => ({ authenticated: true }))
-    }, 500)
+    this.setState(
+      new Promise(resolve => {
+        setTimeout(() => resolve({ authenticated: true }), 500)
+      })
+    )
   }
 
   render() {

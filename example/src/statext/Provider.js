@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from './context'
-
+const compose = (fns, extra) =>
+  fns.reduce((prevFn, nextFn) => value => nextFn(prevFn(value, extra), extra), value => value)
 class StatexProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    middleware: PropTypes.arrayOf(PropTypes.func.isRequired),
   }
+  static defaultProps = { middleware: [] }
   constructor(props) {
     super(props)
+    function unboundSetState(newStateInput, cb, comp) {
+      this.setState(({ store: oldStore }) => {
+        const newStore = new Map(oldStore)
+        const oldVal = newStore.get(comp)
+        const val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput
+        const valAfterMiddleware = compose(props.middleware, (newVal, newCb = cb) => setState(newVal, newCb, comp))(val)
+        newStore.set(comp, { ...oldVal, ...valAfterMiddleware })
+        return { store: newStore }
+      }, cb)
+    }
+    const setState = unboundSetState.bind(this)
     this.state = {
       store: new Map(),
-      setState: (newStateInput, cb, comp) => {
-        this.setState(({ store: oldStore }) => {
-          const newStore = new Map(oldStore)
-          const oldVal = newStore.get(comp)
-          const val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput
-          newStore.set(comp, { ...oldVal, ...val })
-          return { store: newStore }
-        }, cb)
-      },
+      setState,
       setStore: (store, cb) => {
         this.setState(() => ({ store }), cb)
       },
