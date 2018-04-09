@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "glamor": "^2.20.40",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
-    "statext": "^0.0.5"
+    "redux": "^3.7.2",
+    "statext": "^0.0.5",
+    "todomvc-app-css": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,7 +2,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 
 export default {
-  input: 'example/src/statext/index.js',
+  input: 'src/index.js',
   output: [
     {
       file: 'dist/index.js',

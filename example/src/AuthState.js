@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import withSharedState from './statext/withSharedState'
+import { withSharedState } from 'statext'
 
 class AuthState extends React.Component {
   static propTypes = {
@@ -11,7 +11,7 @@ class AuthState extends React.Component {
   authenticate = () => {
     this.setState(
       new Promise(resolve => {
-        setTimeout(() => resolve({ authenticated: true }), 500)
+        setTimeout(() => resolve({ authenticated: true }), 2000)
       })
     )
   }

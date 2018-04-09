@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { css } from 'glamor'
 import PropTypes from 'prop-types'
-import Provider from './statext/Provider'
-import Logger from './statext/Logger'
-import TimeTravel from './statext/TimeTravel'
 import AuthButton from './AuthButton'
 import AuthInfo from './AuthInfo'
-import withSharedState from './statext/withSharedState'
+import { withSharedState, Provider, Logger, TimeTravel } from 'statext'
 const CountState = withSharedState(
   class CountState extends React.Component {
     static propTypes = {

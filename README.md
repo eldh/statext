@@ -2,9 +2,6 @@
 
 A tiny global state management solution for React.
 
-**DISCLAIMER**
-This might be a bad idea.
-
 ## Why?
 React has a great mechanism for state management with its component state and props. In some cases you want to share pieces of information across different parts of the app, and then using just normal state and props becomes cumbersome. This is commonly solved by using state libraries like redux or mobx. 
 
