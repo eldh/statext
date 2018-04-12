@@ -9,8 +9,12 @@ class Logger extends React.Component {
   componentDidUpdate({ statext__: { store } }) {
     this.props.statext__.store.forEach((v, k) => {
       if (v !== store.get(k)) {
-        // eslint-disable-next-line no-console
-        console.log(k.name, store.get(k), v)
+        /* eslint-disable no-console */
+        console.group(k.name)
+        console.log('From', v)
+        console.log('To', store.get(k))
+        console.groupEnd()
+        /* eslint-enable no-console */
       }
     })
   }

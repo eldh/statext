@@ -5,7 +5,7 @@
   "scripts": {
   },
   "private": true,
-  "workspaces": ["statext", "example"],
+  "workspaces": ["statext", "example", "todomvc"],
   "author": "eldh",
   "license": "MIT",
   "devDependencies": {

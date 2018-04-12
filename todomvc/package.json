@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "todomvc",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,7 @@
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
-    "statext": "^0.0.5",
+    "statext": "0.0.5",
     "todomvc-app-css": "^2.1.1"
   },
   "scripts": {

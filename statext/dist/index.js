@@ -262,8 +262,12 @@ var Logger = function (_React$Component) {
 
       this.props.statext__.store.forEach(function (v, k) {
         if (v !== store.get(k)) {
-          // eslint-disable-next-line no-console
-          console.log(k.name, store.get(k), v);
+          /* eslint-disable no-console */
+          console.group(k.name);
+          console.log('From', v);
+          console.log('To', store.get(k));
+          console.groupEnd();
+          /* eslint-enable no-console */
         }
       });
     }
@@ -282,6 +286,16 @@ Logger.propTypes = {
 
 
 var Logger_ = withStatext(Logger);
+
+var buttonStyle = {
+  width: '30px',
+  height: '30px',
+  border: 0,
+  backgroundColor: 'rgba(0,0,0,0.2)',
+  color: '#fff',
+  appearence: 'none',
+  fontWeight: 900
+};
 
 var TimeTravel = function (_React$Component) {
   inherits(TimeTravel, _React$Component);
@@ -307,14 +321,25 @@ var TimeTravel = function (_React$Component) {
 
       return React__default.createElement(
         'div',
-        null,
+        {
+          style: {
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            translateZ: 0,
+            zIndex: 2000
+          }
+        },
         React__default.createElement(
           'button',
           {
             disabled: this.state.past.length < 2,
             onClick: function onClick() {
               var previousStore = _this2.state.past[_this2.state.past.length - 2];
-              previousStore && _this2.setState(function (_ref2) {
+              previousStore && previousStore.size && _this2.setState(function (_ref2) {
                 var past = _ref2.past,
                     future = _ref2.future;
 
@@ -326,7 +351,8 @@ var TimeTravel = function (_React$Component) {
               }, function () {
                 return _this2.props.statext__.setStore(previousStore);
               });
-            }
+            },
+            style: buttonStyle
           },
           '<'
         ),
@@ -348,7 +374,8 @@ var TimeTravel = function (_React$Component) {
               }, function () {
                 return _this2.props.statext__.setStore(nextStore);
               });
-            }
+            },
+            style: buttonStyle
           },
           '>'
         )
@@ -362,7 +389,7 @@ var TimeTravel = function (_React$Component) {
           future = _ref5.future,
           iDidThis = _ref5.iDidThis;
 
-      if (store) return { past: [].concat(toConsumableArray(past), [store]), iDidThis: false, future: iDidThis ? future : [] };
+      if (store && store !== past[past.length - 1]) return { past: [].concat(toConsumableArray(past), [store]), iDidThis: false, future: iDidThis ? future : [] };
       return null;
     }
   }]);
