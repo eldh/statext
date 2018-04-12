@@ -1,5 +1,5 @@
 {
-  "name": "statext",
+  "name": "statext-repo",
   "version": "0.0.5",
   "description": "A tiny state management solution for React",
   "scripts": {

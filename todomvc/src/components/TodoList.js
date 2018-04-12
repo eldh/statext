@@ -1,13 +1,24 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import TodoItem from './TodoItem'
+import FilterState from '../states/FilterState'
 
-export function TodoList({ todos, completeTodo, editTodo, removeTodo }) {
+export function TodoList({ completeTodo, editTodo, removeTodo }) {
   return (
-    <ul className="todo-list">
-      {todos.map(todo => (
-        <TodoItem completeTodo={completeTodo} editTodo={editTodo} key={todo.id} removeTodo={removeTodo} todo={todo} />
-      ))}
-    </ul>
+    <FilterState>
+      {({ filteredTodos }) => (
+        <ul className="todo-list">
+          {filteredTodos.map(todo => (
+            <TodoItem
+              completeTodo={completeTodo}
+              editTodo={editTodo}
+              key={todo.id}
+              removeTodo={removeTodo}
+              todo={todo}
+            />
+          ))}
+        </ul>
+      )}
+    </FilterState>
   )
 }

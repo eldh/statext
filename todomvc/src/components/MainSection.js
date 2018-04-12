@@ -2,14 +2,7 @@
 import React, { Component } from 'react'
 import { TodoList } from './TodoList'
 import Footer from './Footer'
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 import TodoState from '../states/TodoState'
-
-const TODO_FILTERS = {
-  [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed,
-}
 
 function ToggleAll({ completedCount, todos, completeAll }) {
   return todos.length > 0 ? (
@@ -20,7 +13,7 @@ function ToggleAll({ completedCount, todos, completeAll }) {
   ) : null
 }
 
-function TodosFooter({ completedCount, todos, filter, clearCompleted, handleShow }) {
+function TodosFooter({ completedCount, todos, filter, clearCompleted }) {
   const activeCount = todos.length - completedCount
 
   return todos.length > 0 ? (
@@ -29,37 +22,21 @@ function TodosFooter({ completedCount, todos, filter, clearCompleted, handleShow
       completedCount={completedCount}
       filter={filter}
       onClearCompleted={clearCompleted}
-      onShow={handleShow}
     />
   ) : null
 }
 
 export default class MainSection extends Component {
-  state = { filter: SHOW_ALL }
-
-  handleShow = filter => {
-    this.setState({ filter })
-  }
-
   render() {
-    const { filter } = this.state
-
     return (
       <TodoState>
         {({ todos, completeAll, completeTodo, clearCompleted, editTodo, removeTodo }) => {
-          const filtered = todos.filter(TODO_FILTERS[filter])
           const completedCount = todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0)
           return (
             <section className="main">
               <ToggleAll completeAll={completeAll} completedCount={completedCount} todos={todos} />
-              <TodoList completeTodo={completeTodo} editTodo={editTodo} removeTodo={removeTodo} todos={filtered} />
-              <TodosFooter
-                clearCompleted={clearCompleted}
-                completedCount={completedCount}
-                filter={filter}
-                handleShow={this.handleShow}
-                todos={todos}
-              />
+              <TodoList completeTodo={completeTodo} editTodo={editTodo} removeTodo={removeTodo} />
+              <TodosFooter clearCompleted={clearCompleted} completedCount={completedCount} todos={todos} />
             </section>
           )
         }}

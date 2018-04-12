@@ -264,8 +264,8 @@ var Logger = function (_React$Component) {
         if (v !== store.get(k)) {
           /* eslint-disable no-console */
           console.group(k.name);
-          console.log('From', v);
-          console.log('To', store.get(k));
+          console.log('From', store.get(k));
+          console.log('To', v);
           console.groupEnd();
           /* eslint-enable no-console */
         }
