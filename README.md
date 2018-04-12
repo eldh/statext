@@ -10,7 +10,7 @@ However, these frameworks stray outside the react component model and can feel h
 Statext tries to provide a state management solution that feels lightweight and doesn't stray too far from the react way of doing things. It is primarily meant to used in smaller apps, or as a compliment to frameworks like apollo. 
 
 # How?
-Statext is really just a thin layer of hacks on top of React's context feature. This also means it's tiny (1kb).
+Statext is really just a thin layer of hacks on top of React's context feature. This also means it's tiny.
 
 ## API
 Wrap your component with the `withSharedState` higher-order component. Then use `setState` in your component just as you normally would in React. 
