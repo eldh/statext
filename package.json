@@ -10,6 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "@dooer/eslint-config-dooer": "^4.2.1",
+    "react": "^16.4.0-alpha.0911da3",
+    "react-dom": "^16.4.0-alpha.0911da3",
     "eslint": "^4.19.0"
   }
 }

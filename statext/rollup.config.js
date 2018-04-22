@@ -13,7 +13,7 @@ export default {
       format: 'es',
     },
   ],
-  external: ['react', 'prop-types'],
+  external: ['react', 'react-dom', 'prop-types'],
   plugins: [
     resolve(),
     babel({

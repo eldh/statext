@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Provider } from './context'
 const compose = (fns, extra) =>
   fns.reduce((prevFn, nextFn) => value => nextFn(prevFn(value, extra), extra), value => value)
-class StatexProvider extends Component {
+class StatextProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     middleware: PropTypes.arrayOf(PropTypes.func.isRequired),
@@ -11,17 +11,23 @@ class StatexProvider extends Component {
   static defaultProps = { middleware: [] }
   constructor(props) {
     super(props)
-    function unboundSetState(newStateInput, cb, comp) {
-      this.setState(({ store: oldStore }) => {
-        const newStore = new Map(oldStore)
-        const oldVal = newStore.get(comp)
-        const val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput
-        const valAfterMiddleware = compose(props.middleware, (newVal, newCb = cb) => setState(newVal, newCb, comp))(val)
-        newStore.set(comp, { ...oldVal, ...valAfterMiddleware })
-        return { store: newStore }
-      }, cb)
+    function getStateSetter(wrapper = a => a()) {
+      return function unboundSetState(newStateInput, cb, comp) {
+        wrapper(() =>
+          this.setState(({ store: oldStore }) => {
+            const newStore = new Map(oldStore)
+            const oldVal = newStore.get(comp)
+            const val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput
+            const valAfterMiddleware = compose(props.middleware, (newVal, newCb = cb) => setState(newVal, newCb, comp))(
+              val
+            )
+            newStore.set(comp, { ...oldVal, ...valAfterMiddleware })
+            return { store: newStore }
+          }, cb)
+        )
+      }
     }
-    const setState = unboundSetState.bind(this)
+    const setState = getStateSetter().bind(this)
     this.state = {
       store: new Map(),
       setState,
@@ -36,4 +42,4 @@ class StatexProvider extends Component {
   }
 }
 
-export default StatexProvider
+export default StatextProvider

@@ -6459,6 +6459,15 @@ react-dom@^16.3.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-dom@^16.4.0-alpha.0911da3:
+  version "16.4.0-alpha.0911da3"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.0-alpha.0911da3.tgz#4f50568a3f44fade1da7d0747b1308d46281210c"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
@@ -6522,6 +6531,15 @@ react-scripts@1.1.4:
 react@^16.3.0:
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.1.tgz#4a2da433d471251c69b6033ada30e2ed1202cfd8"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react@^16.4.0-alpha.0911da3:
+  version "16.4.0-alpha.0911da3"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.0-alpha.0911da3.tgz#5dbd38a7432b07853f5fd517a14ee614499f8093"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7145,6 +7163,12 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
+simple-cache-provider@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/simple-cache-provider/-/simple-cache-provider-0.5.0.tgz#ee62548898e31e9c5b808510774f0d73b8040302"
+  dependencies:
+    fbjs "^0.8.16"
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -7338,6 +7362,10 @@ sshpk@^1.7.0:
 stack-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.1.tgz#d4f33ab54e8e38778b0ca5cfd3b3afb12db68620"
+
+statext@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/statext/-/statext-0.0.5.tgz#75dbb8a1f594c955a3af6a6df3407f67cfbfd13c"
 
 static-extend@^0.1.1:
   version "0.1.2"

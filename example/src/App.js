@@ -3,7 +3,9 @@ import { css } from 'glamor'
 import PropTypes from 'prop-types'
 import AuthButton from './AuthButton'
 import AuthInfo from './AuthInfo'
+import Async from './Async'
 import { withSharedState, Provider, Logger, TimeTravel } from 'statext'
+import AsyncState from './AsyncState'
 const CountState = withSharedState(
   class CountState extends React.Component {
     static propTypes = {
@@ -42,21 +44,42 @@ class App extends Component {
   state = { mounted: true }
   render() {
     return (
-      <Provider middleware={[thunk]}>
-        <Logger />
-        <TimeTravel />
-        <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>{'Toggle unmount'}</button>
-        {this.state.mounted && (
-          <div className={css({ ' & *': { display: 'flex', flexDirection: 'column' } })}>
-            <AuthInfo />
-            <AuthButton />
-            <CountState render={({ count }) => `The count is ${count}`} />
-            <CountState
-              render={({ count }, { increaseCount }) => <button onClick={increaseCount}>{'Click me ' + count}</button>}
-            />
-          </div>
-        )}
-      </Provider>
+      <React.StrictMode>
+        <React.unstable_AsyncMode>
+          <Provider middleware={[thunk]}>
+            <Logger />
+            <TimeTravel />
+            <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>{'Toggle unmount'}</button>
+            {this.state.mounted && (
+              <div className={css({ ' & *': { display: 'flex', flexDirection: 'column' } })}>
+                <h2>{'AsyncState'}</h2>
+                <Async />
+                <AsyncState>
+                  {({ data, loading, fallback }) =>
+                    data
+                      ? 'Async data is here'
+                      : fallback
+                        ? 'Async data is taking too long'
+                        : loading ? 'Async data is loading' : 'Async data is not requested'
+                  }
+                </AsyncState>
+                <hr />
+                <h2>{'AuthState'}</h2>
+                <AuthInfo />
+                <AuthButton />
+                <hr />
+                <h2>{'CountState'}</h2>
+                <CountState render={({ count }) => `The count is ${count}`} />
+                <CountState
+                  render={({ count }, { increaseCount }) => (
+                    <button onClick={increaseCount}>{'Click me ' + count}</button>
+                  )}
+                />
+              </div>
+            )}
+          </Provider>
+        </React.unstable_AsyncMode>
+      </React.StrictMode>
     )
   }
 }

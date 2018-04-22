@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Consumer } from './context'
 
@@ -39,6 +40,9 @@ function withSharedState(Compo) {
 
     setState = (nextState, cb) => {
       this.props.statext__.setState(nextState, cb, Compo)
+    }
+    unstable_deferredSetState = (nextState, cb) => {
+      ReactDOM.unstable_deferredUpdates(() => this.props.statext__.setState(nextState, cb, Compo))
     }
   }
 }

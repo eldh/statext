@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { createContext, Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-var _React$createContext = React.createContext({}),
-    Provider = _React$createContext.Provider,
-    Consumer = _React$createContext.Consumer;
+var _createContext = createContext('foo'),
+    Provider = _createContext.Provider,
+    Consumer = _createContext.Consumer;
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -134,6 +135,12 @@ function withSharedState(Compo) {
         _this3.props.statext__.setState(nextState, cb, Compo);
       };
 
+      _this3.unstable_deferredSetState = function (nextState, cb) {
+        ReactDOM.unstable_deferredUpdates(function () {
+          return _this3.props.statext__.setState(nextState, cb, Compo);
+        });
+      };
+
       if (!props.statext__.store.get(Compo)) {
         props.statext__.setState(_this3._state, null, Compo);
       }
@@ -185,30 +192,40 @@ var compose = function compose(fns, extra) {
   });
 };
 
-var StatexProvider = function (_Component) {
-  inherits(StatexProvider, _Component);
+var StatextProvider = function (_Component) {
+  inherits(StatextProvider, _Component);
 
-  function StatexProvider(props) {
-    classCallCheck(this, StatexProvider);
+  function StatextProvider(props) {
+    classCallCheck(this, StatextProvider);
 
-    var _this = possibleConstructorReturn(this, (StatexProvider.__proto__ || Object.getPrototypeOf(StatexProvider)).call(this, props));
+    var _this = possibleConstructorReturn(this, (StatextProvider.__proto__ || Object.getPrototypeOf(StatextProvider)).call(this, props));
 
-    function unboundSetState(newStateInput, cb, comp) {
-      this.setState(function (_ref) {
-        var oldStore = _ref.store;
+    function getStateSetter() {
+      var wrapper = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (a) {
+        return a();
+      };
 
-        var newStore = new Map(oldStore);
-        var oldVal = newStore.get(comp);
-        var val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput;
-        var valAfterMiddleware = compose(props.middleware, function (newVal) {
-          var newCb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : cb;
-          return setState(newVal, newCb, comp);
-        })(val);
-        newStore.set(comp, _extends({}, oldVal, valAfterMiddleware));
-        return { store: newStore };
-      }, cb);
+      return function unboundSetState(newStateInput, cb, comp) {
+        var _this2 = this;
+
+        wrapper(function () {
+          return _this2.setState(function (_ref) {
+            var oldStore = _ref.store;
+
+            var newStore = new Map(oldStore);
+            var oldVal = newStore.get(comp);
+            var val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput;
+            var valAfterMiddleware = compose(props.middleware, function (newVal) {
+              var newCb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : cb;
+              return setState(newVal, newCb, comp);
+            })(val);
+            newStore.set(comp, _extends({}, oldVal, valAfterMiddleware));
+            return { store: newStore };
+          }, cb);
+        });
+      };
     }
-    var setState = unboundSetState.bind(_this);
+    var setState = getStateSetter().bind(_this);
     _this.state = {
       store: new Map(),
       setState: setState,
@@ -221,7 +238,7 @@ var StatexProvider = function (_Component) {
     return _this;
   }
 
-  createClass(StatexProvider, [{
+  createClass(StatextProvider, [{
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -231,14 +248,14 @@ var StatexProvider = function (_Component) {
       );
     }
   }]);
-  return StatexProvider;
+  return StatextProvider;
 }(Component);
 
-StatexProvider.propTypes = {
+StatextProvider.propTypes = {
   children: PropTypes.node.isRequired,
   middleware: PropTypes.arrayOf(PropTypes.func.isRequired)
 };
-StatexProvider.defaultProps = { middleware: [] };
+StatextProvider.defaultProps = { middleware: [] };
 
 var Logger = function (_React$Component) {
   inherits(Logger, _React$Component);
@@ -400,7 +417,7 @@ TimeTravel.propTypes = {
 var TimeTravel_ = withStatext(TimeTravel);
 
 var withSharedState$1 = withSharedState_;
-var Provider$1 = StatexProvider;
+var Provider$1 = StatextProvider;
 var Logger$1 = Logger_;
 var TimeTravel$1 = TimeTravel_;
 

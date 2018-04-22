@@ -1,3 +1,3 @@
-import React from 'react'
+import { createContext } from 'react'
 
-export const { Provider, Consumer } = React.createContext({})
+export const { Provider, Consumer } = createContext('foo')
