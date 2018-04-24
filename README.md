@@ -5,12 +5,14 @@ A tiny global state management solution for React.
 ## Why?
 React has a great mechanism for state management with its component state and props. In some cases you want to share pieces of information across different parts of the app, and then using just normal state and props becomes cumbersome. This is commonly solved by using state libraries like redux or mobx. 
 
-However, these frameworks stray outside the react component model and can feel heavy for simpler tasks.
+However, these frameworks work outside the react component model and can feel heavy for simpler tasks.
 
-Statext tries to provide a state management solution that feels lightweight and doesn't stray too far from the react way of doing things. It is primarily meant to used in smaller apps, or as a compliment to frameworks like apollo. 
+Statext tries to provide a state management solution that feels lightweight and doesn't stray too far from the react way of doing things. It is primarily meant to used in smaller apps, or as a compliment to frameworks like apollo. You could build some nice abstractions on top of statext to make it work for larger apps though.
 
 # How?
-Statext is really just a thin layer of hacks on top of React's context feature. This also means it's tiny.
+Statext is really just a thin layer of hacks on top of React's context feature. This also means it's tiny. 
+
+A positive side-effect of Statext being just components is that it works out of the box with React's upcoming [Suspense](https://medium.com/@baphemot/understanding-react-suspense-1c73b4b0b1e6) feature.
 
 ## API
 Wrap your component with the `withSharedState` higher-order component. Then use `setState` in your component just as you normally would in React. 
