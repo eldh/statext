@@ -7367,6 +7367,10 @@ statext@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/statext/-/statext-0.0.5.tgz#75dbb8a1f594c955a3af6a6df3407f67cfbfd13c"
 
+statext@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/statext/-/statext-0.0.7.tgz#9c42589ebb71ff8255b0c58ce975d24bcec8dead"
+
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"

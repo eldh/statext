@@ -1,17 +1,22 @@
 {
   "name": "statext-repo",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "A tiny state management solution for React",
   "scripts": {
   },
   "private": true,
-  "workspaces": ["statext", "example", "todomvc"],
+  "workspaces": [
+    "packages/statext",
+    "packages/example-playground",
+    "packages/example-todomvc"
+  ],
   "author": "eldh",
   "license": "MIT",
   "devDependencies": {
     "@dooer/eslint-config-dooer": "^4.2.1",
+    "eslint": "^4.19.0",
+    "lerna": "^2.11.0",
     "react": "^16.4.0-alpha.0911da3",
-    "react-dom": "^16.4.0-alpha.0911da3",
-    "eslint": "^4.19.0"
+    "react-dom": "^16.4.0-alpha.0911da3"
   }
 }

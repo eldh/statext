@@ -19,6 +19,8 @@ Wrap your component with the `withSharedState` higher-order component. Then use 
 
 ## Example
 
+There are a few runnable examples under `/packages`, including a TodoMVC and an example using React Suspense.
+
 ![Counter example](./example.gif)
 
 This minimal example shows how to use Statext. It should look pretty familiar if you have worked with react before. 
