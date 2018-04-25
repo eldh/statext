@@ -83,5 +83,13 @@ export default class App extends React.Component {
 }
 ```
 
+## Getting started
+If you want to use statext in your app, run `yarn install statext` or `npm i statext`.
+
+To start using this this repo, clone it and run `yarn && lerna bootstrap` in the root of the repo. Then run `cd packages/example-playground && yarn start` to start the playground. 
+
+## Status
+Statext is in its early phases. I don't recommend using it in production yet, but please try it out and report any issues.
+
 ## This looks similar to Unstated
 [Unstated](https://github.com/jamiebuilds/unstated) is great! Statext has actually been around longer than Unstated and takes the concept even further, removing the need for a "Subscriber" component etc.
