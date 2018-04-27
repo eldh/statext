@@ -6,7 +6,7 @@
     "glamor": "^2.20.40",
     "react-scripts": "1.1.4",
     "simple-cache-provider": "^0.5.0",
-    "statext": "0.0.7"
+    "statext": "*"
   },
   "scripts": {
     "start": "react-scripts start",

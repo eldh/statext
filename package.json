@@ -5,11 +5,7 @@
   "scripts": {
   },
   "private": true,
-  "workspaces": [
-    "packages/statext",
-    "packages/example-playground",
-    "packages/example-todomvc"
-  ],
+  "workspaces": ["packages/*"],
   "author": "eldh",
   "license": "MIT",
   "devDependencies": {
