@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/statext.svg)](https://badge.fury.io/js/statext) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+
 # Statext
 
 A tiny global state management solution for React.
