@@ -1,12 +1,18 @@
 {
-  "name": "example",
+  "name": "todomvc-redux",
   "version": "0.0.9",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "glamor": "^2.20.40",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
-    "simple-cache-provider": "^0.6.0",
-    "statext": "*"
+    "redux": "^4.0.0",
+    "reselect": "^3.0.1",
+    "statext": "*",
+    "todomvc-app-css": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -15,6 +21,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "simple-cache-provider": "^0.4.0"
+    "@dooer/eslint-config-dooer": "^4.3.0"
   }
 }

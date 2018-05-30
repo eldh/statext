@@ -5,13 +5,13 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "glamor": "^2.20.40",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "statext": "*",
-    "todomvc-app-css": "^2.1.1"
+    "todomvc-app-css": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
