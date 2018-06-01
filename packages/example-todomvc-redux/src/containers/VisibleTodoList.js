@@ -2,7 +2,7 @@ import React from 'react'
 import TodoList from '../components/TodoList'
 import { getVisibleTodos } from '../selectors'
 import FilteredTodoState from '../states/FilteredTodoState'
-import { bindActionsToDispatch } from '../bindActionsToDispatch'
+import { bindActionsToDispatch } from 'statext-redux'
 import * as actionCreators from '../actions'
 
 const mapStateToProps = state => ({

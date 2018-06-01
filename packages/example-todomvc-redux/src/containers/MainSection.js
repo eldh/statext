@@ -3,7 +3,7 @@ import MainSection from '../components/MainSection'
 import { getCompletedTodoCount } from '../selectors'
 import FilteredTodoState from '../states/FilteredTodoState'
 import * as actionCreators from '../actions'
-import { bindActionsToDispatch } from '../bindActionsToDispatch'
+import { bindActionsToDispatch } from 'statext-redux'
 
 const mapStateToProps = state => ({
   todosCount: state.todos.length,
