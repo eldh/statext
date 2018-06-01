@@ -9,7 +9,7 @@ import {
 
 const initialState = [
   {
-    text: 'Use Redux',
+    text: 'Use Redux actions & reducers with Statext',
     completed: false,
     id: 0,
   },

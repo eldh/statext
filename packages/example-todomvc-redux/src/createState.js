@@ -10,7 +10,9 @@ export function createState(reducer, name) {
 
     state = { state: reducer(undefined, {}) }
 
-    dispatch = actionCreator => data => this.setState(({ state }) => reducer(state, actionCreator(data)))
+    dispatch = action => {
+      this.setState(({ state }) => ({ state: reducer(state, action) }))
+    }
 
     render() {
       return this.props.children({ state: this.state.state, dispatch: this.dispatch, name })

@@ -1,14 +1,20 @@
 import React from 'react'
 import TodoList from '../components/TodoList'
 import { getVisibleTodos } from '../selectors'
-import CombinedState from '../states/CombinedState'
+import FilteredTodoState from '../states/FilteredTodoState'
+import { bindActionsToDispatch } from '../bindActionsToDispatch'
+import * as actionCreators from '../actions'
 
 const mapStateToProps = state => ({
   filteredTodos: getVisibleTodos(state),
 })
 
 const VisibleTodoList = () => (
-  <CombinedState>{({ actions, state }) => <TodoList actions={actions} {...mapStateToProps(state)} />}</CombinedState>
+  <FilteredTodoState>
+    {({ dispatch, state }) => (
+      <TodoList actions={bindActionsToDispatch(dispatch, actionCreators)} {...mapStateToProps(state)} />
+    )}
+  </FilteredTodoState>
 )
 
 export default VisibleTodoList

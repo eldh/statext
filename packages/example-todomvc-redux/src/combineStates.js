@@ -2,15 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function combineDispatch(one, two) {
-  return actionCreator => data => {
-    const action = actionCreator(data)
+  return action => {
     one(action)
     two(action)
   }
 }
 
 function combineStateComponents(Acc, StateComponent) {
-  function CombinedState({ children }) {
+  function FilteredTodoState({ children }) {
     // TODO Cleanup this mess
     return (
       <StateComponent>
@@ -31,11 +30,11 @@ function combineStateComponents(Acc, StateComponent) {
       </StateComponent>
     )
   }
-  CombinedState.propTypes = {
+  FilteredTodoState.propTypes = {
     children: PropTypes.func.isRequired,
   }
 
-  return CombinedState
+  return FilteredTodoState
 }
 
 export function combineStates(...states) {
