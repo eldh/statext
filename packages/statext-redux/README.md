@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/statext-redux.svg)](https://badge.fury.io/js/statext-redux) [!
+[![npm version](https://badge.fury.io/js/statext-redux.svg)](https://badge.fury.io/js/statext-redux)
 
 # Statext-redux
 
