@@ -1,7 +1,7 @@
 {
-  "name": "statext",
-  "version": "0.0.11",
-  "description": "A tiny state management solution for React",
+  "name": "statext-redux",
+  "version": "0.0.2",
+  "description": "Utils for using redux reducers and actions with statext",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "react",
+    "redux",
     "state",
     "management",
     "state management"
@@ -31,6 +32,10 @@
     "jest": "^23.0.1",
     "rollup": "^0.59.4",
     "rollup-plugin-babel": "^3.0.4",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "statext": "^0.0.11"
+  },
+  "dependencies": {
+    "statext": "^0.0.11"
   }
 }
