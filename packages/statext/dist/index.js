@@ -362,7 +362,6 @@ var TimeTravel = function (_React$Component) {
 
                 var newpast = [].concat(toConsumableArray(past));
                 var a = newpast.pop();
-                newpast.pop();
                 var newfuture = [a].concat(toConsumableArray(future));
                 return { past: newpast, future: newfuture, iDidThis: true };
               }, function () {
