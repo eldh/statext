@@ -1,10 +1,10 @@
 import React from 'react'
 import TodoTextInput from '../components/TodoTextInput'
-import TodoState from '../states/TodoState'
+import FilteredTodoState from '../states/FilteredTodoState'
 import { addTodo } from '../actions'
 
 const Header = () => (
-  <TodoState>
+  <FilteredTodoState>
     {({ dispatch }) => (
       <header className="header">
         <h1>todos</h1>
@@ -19,7 +19,7 @@ const Header = () => (
         />
       </header>
     )}
-  </TodoState>
+  </FilteredTodoState>
 )
 
 export default Header

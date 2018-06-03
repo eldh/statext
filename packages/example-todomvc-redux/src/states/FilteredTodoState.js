@@ -1,5 +1,4 @@
-import TodoState from '../states/TodoState'
-import FilterState from '../states/FilterState'
-import { combineStates } from 'statext-redux'
+import * as reducers from '../reducers'
+import { createState } from 'statext-redux'
 
-export default combineStates(FilterState, TodoState)
+export default createState(reducers)
