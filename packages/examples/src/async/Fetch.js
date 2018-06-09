@@ -1,26 +1,45 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import { withSharedState } from 'statext'
 
-const cache = new Map()
-const load = (url, refetchAt) => {
-  const hasValue = cache.get(url) && !!cache.get(url).lastUpdated
-  const needsRefresh = refetchAt && hasValue && refetchAt > cache.get(url).lastUpdated
-  if (!needsRefresh && hasValue) {
-    return cache.get(url)
+class AsyncFetcher_ extends React.Component {
+  static propTypes = {
+    url: PropTypes.string.isRequired,
+    children: PropTypes.func.isRequired,
+    refetchAt: PropTypes.number,
   }
-  const pinkyPromise = window
-    .fetch(url)
-    .then(body => body.json())
-    .then(json => cache.set(url, { json, lastUpdated: Date.now() }))
-    .catch(error => cache.set(url, { error }))
-  cache.set(url, pinkyPromise)
-  throw pinkyPromise
-}
+  state = { cache: new Map() }
 
-function AsyncFetcher({ url, refetchAt, children }) {
-  return children(load(url, refetchAt))
+  load = (url, refetchAt) => {
+    const { cache } = this.state
+    const hasValue = cache.get(url) && !!cache.get(url).lastUpdated
+    const needsRefresh = refetchAt && hasValue && refetchAt > cache.get(url).lastUpdated
+    if (!needsRefresh && hasValue) {
+      return cache.get(url)
+    }
+    const pinkyPromise = window
+      .fetch(url)
+      .then(body => body.json())
+      .then(json => {
+        cache.set(url, { json, lastUpdated: Date.now() })
+        this.setState({ cache })
+      })
+      .catch(error => {
+        cache.set(url, { error })
+        this.setState({ cache })
+      })
+    cache.set(url, pinkyPromise)
+    this.setState({ cache })
+    throw pinkyPromise
+  }
+
+  render() {
+    const { url, refetchAt, children } = this.props
+    return children(this.load(url, refetchAt))
+  }
 }
+const AsyncFetcher = withSharedState(AsyncFetcher_)
 
 export class Fetch extends React.Component {
   static propTypes = {
@@ -33,17 +52,11 @@ export class Fetch extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = cache.has(props.url)
-      ? {
-          refetchAt: null,
-          shouldFetch: true,
-          isFetching: false,
-        }
-      : {
-          refetchAt: null,
-          shouldFetch: false,
-          isFetching: true,
-        }
+    this.state = {
+      refetchAt: null,
+      shouldFetch: false,
+      isFetching: true,
+    }
   }
 
   componentDidMount() {
@@ -57,7 +70,7 @@ export class Fetch extends React.Component {
   }
 
   setFetching = forceRefetch => {
-    if (forceRefetch || !cache.has(this.props.url)) {
+    if (forceRefetch) {
       this.setState({ isFetching: true, shouldFetch: false })
       ReactDOM.unstable_deferredUpdates(() =>
         this.setState({
