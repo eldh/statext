@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from './components/Header'
 import MainSection from './components/MainSection'
+import 'todomvc-app-css/index.css'
 
-export const App = () => (
+export default () => (
   <div className="todoapp">
     <Header />
     <MainSection />

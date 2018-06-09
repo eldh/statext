@@ -1,25 +1,23 @@
 {
-  "name": "todomvc-redux",
+  "name": "examples",
   "version": "0.0.10",
   "private": true,
   "dependencies": {
-    "classnames": "^2.2.5",
     "glamor": "^2.20.40",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.4.0-alpha.0911da3",
+    "react-dom": "^16.4.0-alpha.0911da3",
     "react-scripts": "1.1.4",
+    "simple-cache-provider": "^0.6.0",
     "reselect": "^3.0.1",
-    "statext": "^0.0.11",
-    "statext-redux": "^0.0.2",
+    "statext": "*",
+    "statext-redux": "*",
     "todomvc-app-css": "^2.1.2"
+
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "@dooer/eslint-config-dooer": "^4.3.0"
   }
 }

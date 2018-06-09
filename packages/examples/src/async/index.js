@@ -1,10 +1,10 @@
 import React from 'react'
-import Picker from '../components/Picker'
-import Posts from '../components/Posts'
-import State from '../state'
+import Picker from './components/Picker'
+import Posts from './components/Posts'
+import State from './state'
 import { PostsFetcher } from './PostsFetcher'
 
-export default function App() {
+export default function AsyncExample() {
   return (
     <div>
       <State>

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Fetch } from '../Fetch'
-import RedditState from '../state/index'
+import { Fetch } from './Fetch'
+import RedditState from './state'
 
 export class PostsFetcher extends React.Component {
   static propTypes = {
