@@ -16,10 +16,11 @@ function compose(...funcs) {
 }
 
 function applyMiddleware(middlewares, getState, initialDispatch) {
+  if (!middlewares) return initialDispatch
   let dispatch = initialDispatch
   const middlewareAPI = {
     getState,
-    dispatch: (...args2) => console.log("'dispatch', args2", 'dispatch', args2) || dispatch(...args2),
+    dispatch: (...args2) => dispatch(...args2),
   }
   const chain = middlewares.map(middleware => middleware(middlewareAPI))
   dispatch = compose(...chain)(dispatch)
@@ -39,8 +40,6 @@ export function createState(reducers, middlewares) {
     getState = () => this.state.state
 
     commit = (action, cb) => {
-      console.log('action, cb', action, cb)
-
       this.setState(({ state }) => ({ state: reducer(state, action) }), cb)
     }
 

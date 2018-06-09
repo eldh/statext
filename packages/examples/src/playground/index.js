@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import AuthButton from './AuthButton'
 import AuthInfo from './AuthInfo'
 import Async from './Async'
-import { withSharedState, Logger, TimeTravel } from 'statext'
+import { withSharedState } from 'statext'
 import AsyncState from './AsyncState'
 const CountState = withSharedState(
   class CountState extends React.Component {
@@ -34,8 +34,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Logger />
-        <TimeTravel />
         <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>{'Toggle unmount'}</button>
         {this.state.mounted && (
           <div className={css({ ' & *': { display: 'flex', flexDirection: 'column' } })}>
@@ -54,6 +52,7 @@ class App extends Component {
             </AsyncState>
             <hr />
             <h2>{'AuthState'}</h2>
+            <p>{'This bit required the thunk middleware to work'}</p>
             <AuthInfo />
             <AuthButton />
             <hr />

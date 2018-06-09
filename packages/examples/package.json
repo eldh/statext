@@ -3,16 +3,17 @@
   "version": "0.0.10",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "glamor": "^2.20.40",
     "react": "^16.4.0-alpha.0911da3",
     "react-dom": "^16.4.0-alpha.0911da3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "simple-cache-provider": "^0.6.0",
     "reselect": "^3.0.1",
+    "simple-cache-provider": "^0.6.0",
     "statext": "*",
-    "statext-redux": "*",
-    "todomvc-app-css": "^2.1.2"
-
+    "statext-redux": "*"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,14 +1,11 @@
 import React from 'react'
 import Header from './containers/Header'
 import MainSection from './containers/MainSection'
-import { Provider, Logger } from 'statext'
+import '../todo-mvc/todomvc.css'
 
 export default () => (
-  <Provider>
-    <Logger />
-    <div className="todoapp">
-      <Header />
-      <MainSection />
-    </div>
-  </Provider>
+  <div className="todoapp">
+    <Header />
+    <MainSection />
+  </div>
 )
