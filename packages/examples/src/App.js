@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
 import { Provider, Logger, TimeTravel } from 'statext'
 import AppContainer from './AppContainer'
 
@@ -13,6 +12,7 @@ const thunk = (val, setState) => {
   }
   return val
 }
+
 class App extends Component {
   state = { mounted: true }
   render() {

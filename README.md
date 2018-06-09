@@ -1,5 +1,6 @@
 [![npm version](https://badge.fury.io/js/statext.svg)](https://badge.fury.io/js/statext) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
-
+[![Blazing Fast](https://img.shields.io/badge/speed-blazing%20%F0%9F%94%A5-brightgreen.svg)](https://twitter.com/acdlite/status/974390255393505280)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Statext
 
 A tiny global state management solution for React.
@@ -9,7 +10,7 @@ React has a great mechanism for state management with its component state and pr
 
 However, these frameworks work outside the react component model and can feel heavy for simpler tasks.
 
-Statext tries to provide a state management solution that feels lightweight and doesn't stray too far from the react way of doing things. It is primarily meant to used in smaller apps, or as a compliment to frameworks like apollo. You could build some nice abstractions on top of statext to make it work for larger apps though.
+Statext tries to provide a state management solution that feels lightweight and doesn't stray too far from the React way of doing things. It is primarily meant to used in smaller apps, or as a compliment to frameworks like [Apollo](https://www.apollographql.com/client). You could build some nice abstractions on top of Statext to make it work for larger apps though.
 
 # How?
 Statext is really just a thin layer of hacks on top of React's context feature. This also means it's tiny. 
@@ -21,7 +22,7 @@ Wrap your component with the `withSharedState` higher-order component. Then use 
 
 ## Example
 
-There are a few runnable examples under `/packages`, including a TodoMVC and an example using React Suspense.
+There are a few runnable examples under `/packages/examples`, including a TodoMVC and an example using React Suspense. There are also a few examples using `statext-redux`, which allows you to use Statext together with redux action creators and reducers.
 
 ![Counter example](./example.gif)
 
@@ -86,9 +87,9 @@ export default class App extends React.Component {
 ```
 
 ## Getting started
-If you want to use statext in your app, run `yarn install statext` or `npm i statext`.
+If you want to use Statext in your app, run `yarn install statext` or `npm i statext`.
 
-To start using this this repo, clone it and run `yarn && lerna bootstrap` in the root of the repo. Then run `cd packages/example-playground && yarn start` to start the playground. 
+To start using this this repo, clone it and run `yarn && lerna bootstrap` in the root of the repo. Then run `cd packages/examples && yarn start` to start the examples. 
 
 ## Status
 Statext is in its early phases. I don't recommend using it in production yet, but please try it out and report any issues.
