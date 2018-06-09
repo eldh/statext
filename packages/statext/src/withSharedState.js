@@ -24,7 +24,10 @@ function withSharedState(Compo) {
     }
 
     shouldComponentUpdate({ statext__: { store: prevStore }, ...prevprops }) {
-      const { statext__: { store }, ...props } = this.props
+      const {
+        statext__: { store },
+        ...props
+      } = this.props
       if (!prevStore || prevStore.get(Compo) !== store.get(Compo)) return true
       for (const i in props) if (!(i in prevprops)) return true
       for (const i in prevprops) if (props[i] !== prevprops[i]) return true

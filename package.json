@@ -9,6 +9,10 @@
   ],
   "author": "eldh",
   "license": "MIT",
+  "resolutions": {
+    "react": "16.4.0-alpha.0911da3",
+    "react-dom": "16.4.0-alpha.0911da3"
+  },
   "devDependencies": {
     "@dooer/eslint-config-dooer": "^4.2.1",
     "eslint": "^4.19.0",

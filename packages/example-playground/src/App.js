@@ -60,7 +60,9 @@ class App extends Component {
                       ? 'Async data: ' + data
                       : fallback
                         ? 'Async data is taking too long'
-                        : loading ? 'Async data is loading' : 'Push the button to fetch data'
+                        : loading
+                          ? 'Async data is loading'
+                          : 'Push the button to fetch data'
                   }
                 </AsyncState>
                 <hr />

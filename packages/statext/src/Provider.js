@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from './context'
+
 const compose = (fns, extra) =>
   fns.reduce((prevFn, nextFn) => value => nextFn(prevFn(value, extra), extra), value => value)
 class StatextProvider extends Component {
