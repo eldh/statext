@@ -33,7 +33,7 @@ class App extends Component {
   state = { mounted: true }
   render() {
     return (
-      <div>
+      <div className={css({ padding: '20px' })}>
         <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>{'Toggle unmount'}</button>
         {this.state.mounted && (
           <div className={css({ ' & *': { display: 'flex', flexDirection: 'column' } })}>

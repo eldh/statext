@@ -3,10 +3,11 @@ import Picker from './components/Picker'
 import Posts from './components/Posts'
 import State from './state'
 import { PostsFetcher } from './PostsFetcher'
+import { css } from 'glamor'
 
 export default function AsyncExample() {
   return (
-    <div>
+    <div className={css({ paddingLeft: '20px', paddingRight: '20px' })}>
       <State>
         {({ subreddit, setSubreddit }) => (
           <Picker onChange={setSubreddit} options={['reactjs', 'frontend']} value={subreddit} />
@@ -35,7 +36,7 @@ export default function AsyncExample() {
                   <h2>{'Empty.'}</h2>
                 )
               ) : (
-                <div style={{ opacity: isFetching ? 0.5 : 1 }}>{posts && <Posts posts={posts} />}</div>
+                <div className={css({ opacity: isFetching ? 0.5 : 1 })}>{posts && <Posts posts={posts} />}</div>
               )}
             </React.Fragment>
           )

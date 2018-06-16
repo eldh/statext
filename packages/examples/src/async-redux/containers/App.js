@@ -4,6 +4,7 @@ import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../act
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import State from '../state'
+import { css } from 'glamor'
 
 class App extends Component {
   static propTypes = {
@@ -40,7 +41,7 @@ class App extends Component {
     const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
     const isEmpty = posts.length === 0
     return (
-      <div>
+      <div className={css({ paddingLeft: '20px', paddingRight: '20px' })}>
         <Picker onChange={this.handleChange} options={['reactjs', 'frontend']} value={selectedSubreddit} />
         <p>
           {lastUpdated && (
@@ -59,7 +60,7 @@ class App extends Component {
             <h2>{'Empty.'}</h2>
           )
         ) : (
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          <div className={css({ opacity: isFetching ? 0.5 : 1 })}>
             <Posts posts={posts} />
           </div>
         )}

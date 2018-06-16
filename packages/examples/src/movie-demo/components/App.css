@@ -1,0 +1,53 @@
+:root {
+  --gutter: 16px;
+  --small-gutter: 8px;
+}
+
+.Body {
+  margin: 0;
+  background-color: #00010a;
+  color: #fdffff;
+  font-family: sans-serif;
+  font-size: 16px;
+  min-height: 100vh;
+}
+.App {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: var(--gutter);
+}
+
+.App .back-link {
+  cursor: pointer;
+  font-size: 32px;
+  margin-bottom: var(--gutter);
+  transform: scaleX(-1);
+  text-align: right;
+}
+
+.AppSpinner {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  line-height: 21px;
+}
+
+.sub-text {
+  color: #949aa4;
+  font-size: 13px;
+}
+
+.small-title {
+  color: #949aa4;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: var(--small-gutter);
+}
+
+.box {
+  border: 1px solid #151828;
+  margin: var(--gutter) 0;
+  border-radius: 3px;
+  padding: var(--small-gutter) var(--gutter);
+  background-color: #090e21;
+}

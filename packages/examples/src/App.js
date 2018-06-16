@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Provider, Logger, TimeTravel } from 'statext'
 import AppContainer from './AppContainer'
 
@@ -13,7 +13,7 @@ import AppContainer from './AppContainer'
 //   return val
 // }
 
-class App extends Component {
+class App extends React.Component {
   state = { mounted: true }
   render() {
     return (

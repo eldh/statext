@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Fetch } from './Fetch'
+import { Fetch } from '../Fetch'
 import RedditState from './state'
 
 export class PostsFetcher extends React.Component {
