@@ -1,10 +1,9 @@
 import React from 'react'
-import { fetchMovies } from '../api'
 import Icon from './Icon'
 import Spinner from './Spinner'
-import { createLoader } from '../../Loader'
 import './IndexPage.css'
 import { AppSpinner } from '..'
+import { MoviesLoader } from '../loaders'
 
 function Score({ score, icon }) {
   if (score === null || score < 0) return null
@@ -44,7 +43,6 @@ function Movie({
     </div>
   )
 }
-const MoviesLoader = createLoader(fetchMovies)
 export default function IndexPage({ onMovieClick, loadingMovieId }) {
   console.log("'render index'", 'render index')
 

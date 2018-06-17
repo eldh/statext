@@ -1,10 +1,10 @@
 import React from 'react'
-import { Placeholder } from './future'
+import { Placeholder } from './placeholder'
 import Spinner from './components/Spinner'
 import IndexPage from './components/IndexPage'
 import './components/App.css'
 import MovieState from './MovieState'
-import { createLoader } from '../Loader'
+import { MoviePageLoader } from './loaders'
 
 export function AppSpinner() {
   return (
@@ -13,9 +13,8 @@ export function AppSpinner() {
     </div>
   )
 }
-const ComponentLoader = createLoader(() => import('./components/MoviePage').then(m => m.default || m))
-function MoviePageLoader(props) {
-  return <ComponentLoader fallback={AppSpinner}>{({ value: Component }) => <Component {...props} />}</ComponentLoader>
+function MoviePage(props) {
+  return <MoviePageLoader fallback={AppSpinner}>{({ value: Component }) => <Component {...props} />}</MoviePageLoader>
 }
 
 export default function App() {
@@ -32,9 +31,9 @@ export default function App() {
                     {'➜'}
                   </div>
                 )}
-                <Placeholder delayMs={1500} fallback={<AppSpinner />}>
+                <Placeholder delayMs={1500} fallback={AppSpinner}>
                   {showDetail ? (
-                    <MoviePageLoader movieId={currentMovieId} />
+                    <MoviePage movieId={currentMovieId} />
                   ) : (
                     <IndexPage loadingMovieId={currentMovieId} onMovieClick={selectMovie} />
                   )}

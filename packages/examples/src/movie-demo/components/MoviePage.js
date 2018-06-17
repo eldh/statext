@@ -1,12 +1,8 @@
 import React from 'react'
-import { fetchMovieDetails, fetchMovieReviews } from '../api'
-import { createFetcher, Placeholder } from '../future'
 import Icon from './Icon'
 import Spinner from './Spinner'
 import './MoviePage.css'
-
-const movieDetailsFetcher = createFetcher(fetchMovieDetails)
-const movieReviewsFetcher = createFetcher(fetchMovieReviews)
+import { MovieReviewsLoader, ImageLoader, MovieDetailsLoader } from '../loaders'
 
 function Rating({ label, score, icon }) {
   if (typeof score !== 'number' || score < 0) return null
@@ -36,44 +32,45 @@ function MovieReview({ quote, critic }) {
 }
 
 function MovieReviews({ movieId }) {
-  const reviews = movieReviewsFetcher.read(movieId)
-  return <div className="MovieReviews">{reviews.map(review => <MovieReview key={review.id} {...review} />)}</div>
+  return (
+    <MovieReviewsLoader args={movieId} fallback={Spinner} timeout={500}>
+      {({ value: reviews }) => (
+        <div className="MovieReviews">{reviews.map(review => <MovieReview key={review.id} {...review} />)}</div>
+      )}
+    </MovieReviewsLoader>
+  )
 }
 
-const imageFetcher = createFetcher(
-  src =>
-    new Promise((resolve, reject) => {
-      const image = new global.Image()
-      image.onload = () => resolve(src)
-      image.onerror = reject
-      image.src = src
-    })
-)
-
 function Img(props) {
-  return <img alt={props.alt || props.src} {...props} src={imageFetcher.read(props.src)} />
+  return (
+    <ImageLoader args={props.src}>
+      {({ value: src }) => <img alt={props.alt || props.src} {...props} src={src} />}
+    </ImageLoader>
+  )
 }
 
 function MovieDetails({ movieId }) {
-  const { ratingSummary, ratings, title, posters } = movieDetailsFetcher.read(movieId)
-
   return (
-    <div className="MovieDetails">
-      <div className="poster">
-        <Img alt="poster" src={posters.detailed} />
-      </div>
-      <div className="details">
-        <h1>{title}</h1>
-        <div className="ratings">
-          <Rating icon={ratings.critics_rating} label="Tomatometer" score={ratings.critics_score} />
-          <Rating icon={ratings.audience_rating} label="Audience" score={ratings.audience_score} />
+    <MovieDetailsLoader args={movieId}>
+      {({ value: { ratingSummary, ratings, title, posters } }) => (
+        <div className="MovieDetails">
+          <div className="poster">
+            <Img alt="poster" src={posters.detailed} />
+          </div>
+          <div className="details">
+            <h1>{title}</h1>
+            <div className="ratings">
+              <Rating icon={ratings.critics_rating} label="Tomatometer" score={ratings.critics_score} />
+              <Rating icon={ratings.audience_rating} label="Audience" score={ratings.audience_score} />
+            </div>
+            <div className="critic">
+              <div className="small-title">{'Critics consensus'}</div>
+              {ratingSummary.consensus}
+            </div>
+          </div>
         </div>
-        <div className="critic">
-          <div className="small-title">{'Critics consensus'}</div>
-          {ratingSummary.consensus}
-        </div>
-      </div>
-    </div>
+      )}
+    </MovieDetailsLoader>
   )
 }
 
@@ -81,9 +78,7 @@ export default function MoviePage({ movieId }) {
   return (
     <React.Fragment>
       <MovieDetails movieId={movieId} />
-      <Placeholder delayMs={500} fallback={<Spinner />}>
-        <MovieReviews movieId={movieId} />
-      </Placeholder>
+      <MovieReviews movieId={movieId} />
     </React.Fragment>
   )
 }

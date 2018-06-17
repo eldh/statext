@@ -178,6 +178,8 @@ function withSharedState(Compo) {
       set: function set$$1(newState) {
         this._state = newState;
       }
+      // eslint-disable-next-line camelcase
+
     }]);
     return RestateComponent;
   }(Compo), _class.propTypes = {
@@ -280,7 +282,7 @@ var Logger = function (_React$Component) {
       this.props.statext__.store.forEach(function (v, k) {
         if (v !== store.get(k)) {
           /* eslint-disable no-console */
-          console.group(k.name);
+          console.group(k.displayName || k.name);
           console.log('From', store.get(k));
           console.log('To', v);
           console.groupEnd();
@@ -314,6 +316,17 @@ var buttonStyle = {
   fontWeight: 900
 };
 
+var wrapperStyle = {
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  translateZ: 0,
+  zIndex: 2000
+};
+
 var TimeTravel = function (_React$Component) {
   inherits(TimeTravel, _React$Component);
 
@@ -338,18 +351,7 @@ var TimeTravel = function (_React$Component) {
 
       return React__default.createElement(
         'div',
-        {
-          style: {
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            translateZ: 0,
-            zIndex: 2000
-          }
-        },
+        { style: wrapperStyle },
         React__default.createElement(
           'button',
           {

@@ -44,6 +44,7 @@ function withSharedState(Compo) {
     setState = (nextState, cb) => {
       this.props.statext__.setState(nextState, cb, Compo)
     }
+    // eslint-disable-next-line camelcase
     unstable_deferredSetState = (nextState, cb) => {
       ReactDOM.unstable_deferredUpdates(() => this.props.statext__.setState(nextState, cb, Compo))
     }

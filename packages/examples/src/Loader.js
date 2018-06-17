@@ -2,54 +2,64 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { withSharedState } from 'statext'
+import { Placeholder } from './movie-demo/placeholder'
 
-const cache = new Map()
+export function createLoader(loadFn, getCacheKey, name) {
+  const ongoing = {}
 
-class LoaderCache extends React.Component {
-  static propTypes = {
-    loadFn: PropTypes.func.isRequired,
-    children: PropTypes.func.isRequired,
-    refetchAt: PropTypes.number,
-  }
+  const displayName = name || (typeof getCacheKey === 'string' ? getCacheKey : 'LoaderCache')
 
-  state = { cache }
-
-  load = () => {
-    const { loadFn, refetchAt } = this.props
-
-    const lastUpdated = cache.get(loadFn) && cache.get(loadFn).lastUpdated
-    const hasValue = !!lastUpdated
-    const needsRefresh = refetchAt && hasValue && refetchAt > lastUpdated
-    if (!needsRefresh && hasValue) {
-      return cache.get(loadFn)
+  class LoaderCache extends React.Component {
+    static propTypes = {
+      children: PropTypes.func.isRequired,
+      args: PropTypes.any,
+      refetchAt: PropTypes.number,
     }
-    const pinkyPromise = loadFn(loadFn)
-      .then(value => {
-        cache.set(loadFn, { value, lastUpdated: Date.now() })
-        this.setState({ cache })
-      })
-      .catch(error => {
-        cache.set(loadFn, { error })
-        this.setState({ cache })
-      })
-    cache.set(loadFn, pinkyPromise)
-    throw pinkyPromise
+
+    static displayName = displayName
+
+    state = {}
+
+    load = () => {
+      const { refetchAt, args } = this.props
+      const key = typeof getCacheKey === 'function' ? getCacheKey(args) : getCacheKey
+
+      const lastUpdated = this.state[key] && this.state[key].lastUpdated
+      const hasValue = !!lastUpdated
+      const needsRefresh = refetchAt && hasValue && refetchAt > lastUpdated
+      if (!needsRefresh && hasValue) {
+        return this.state[key]
+      }
+
+      const pinkyPromise =
+        ongoing[key] ||
+        loadFn(...(Array.isArray(args) ? args : [args]))
+          .then(value => {
+            this.setState({ [key]: { value, lastUpdated: Date.now() } })
+            delete ongoing[key]
+          })
+          .catch(error => {
+            this.setState({ [key]: { error } })
+            delete ongoing[key]
+          })
+      ongoing[key] = pinkyPromise
+      throw pinkyPromise
+    }
+
+    render() {
+      const { children } = this.props
+      return children(this.load())
+    }
   }
 
-  render() {
-    const { children } = this.props
-    return children(this.load())
-  }
-}
-const StatextLoaderCache = withSharedState(LoaderCache)
+  const StatextCache = withSharedState(LoaderCache)
 
-export function createLoader(loadFn) {
   return class Loader extends React.Component {
     static propTypes = {
-      fallback: PropTypes.func.isRequired,
+      fallback: PropTypes.func,
       children: PropTypes.func.isRequired,
       timeout: PropTypes.number,
-      cacheKey: PropTypes.any,
+      args: PropTypes.any,
     }
 
     static defaultProps = { timeout: 1500 }
@@ -62,10 +72,6 @@ export function createLoader(loadFn) {
 
     componentDidMount() {
       this.setFetching()
-    }
-
-    shouldComponentUpdate({ cacheKey, children }, nextState) {
-      return this.state !== nextState || cacheKey !== this.props.cacheKey || this.props.children || children
     }
 
     setFetching = () => {
@@ -84,34 +90,37 @@ export function createLoader(loadFn) {
       )
     }
 
-    render() {
+    renderChildren() {
       const { loading, showLoader, refetchAt } = this.state
-      const { children, cacheKey, timeout, fallback: Fallback } = this.props
-
-      return (
-        <React.Timeout ms={timeout}>
-          {didTimeout =>
-            didTimeout ? (
-              <Fallback />
-            ) : loading || showLoader ? (
-              <StatextLoaderCache cacheKey={cacheKey || loadFn} loadFn={loadFn} refetchAt={refetchAt}>
-                {res =>
-                  children({
-                    ...res,
-                    refetch: this.refetch,
-                    showLoader: showLoader && !loading,
-                  })
-                }
-              </StatextLoaderCache>
-            ) : (
-              children({
-                refetch: this.refetch,
-                loading: false,
-                showLoader: false,
-              })
-            )
+      const { children, args } = this.props
+      return loading || showLoader ? (
+        <StatextCache args={args} getCacheKey={getCacheKey} loadFn={loadFn} refetchAt={refetchAt}>
+          {res =>
+            children({
+              ...res,
+              refetch: this.refetch,
+              showLoader: showLoader && !loading,
+            })
           }
-        </React.Timeout>
+        </StatextCache>
+      ) : (
+        children({
+          refetch: this.refetch,
+          loading: false,
+          showLoader: false,
+        })
+      )
+    }
+
+    render() {
+      const { timeout, fallback: Fallback } = this.props
+
+      return Fallback ? (
+        <Placeholder delayMs={timeout} fallback={Fallback}>
+          {this.renderChildren()}
+        </Placeholder>
+      ) : (
+        this.renderChildren()
       )
     }
   }
