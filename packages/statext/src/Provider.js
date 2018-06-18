@@ -17,7 +17,7 @@ class StatextProvider extends Component {
         wrapper(() =>
           this.setState(({ store: oldStore }) => {
             const newStore = new Map(oldStore)
-            const oldVal = newStore.get(comp)
+            const oldVal = newStore.get(comp) || {}
             const val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput
             const valAfterMiddleware = compose(props.middleware, (newVal, newCb = cb) => setState(newVal, newCb, comp))(
               val

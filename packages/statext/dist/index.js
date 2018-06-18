@@ -222,7 +222,7 @@ var StatextProvider = function (_Component) {
             var oldStore = _ref.store;
 
             var newStore = new Map(oldStore);
-            var oldVal = newStore.get(comp);
+            var oldVal = newStore.get(comp) || {};
             var val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput;
             var valAfterMiddleware = compose(props.middleware, function (newVal) {
               var newCb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : cb;
