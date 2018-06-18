@@ -35,11 +35,11 @@ export function createLoader(loadFn, getCacheKey, name) {
         ongoing[key] ||
         loadFn(...(Array.isArray(args) ? args : [args]))
           .then(value => {
-            this.setState({ [key]: { value, lastUpdated: Date.now() } })
+            this.unstable_deferredSetState({ [key]: { value, lastUpdated: Date.now() } })
             delete ongoing[key]
           })
           .catch(error => {
-            this.setState({ [key]: { error } })
+            this.unstable_deferredSetState({ [key]: { error } })
             delete ongoing[key]
           })
       ongoing[key] = pinkyPromise

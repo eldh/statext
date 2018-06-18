@@ -44,8 +44,6 @@ function Movie({
   )
 }
 export default function IndexPage({ onMovieClick, loadingMovieId }) {
-  console.log("'render index'", 'render index')
-
   return (
     <MoviesLoader fallback={AppSpinner}>
       {({ value: movies }) => (
