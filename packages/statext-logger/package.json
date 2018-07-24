@@ -1,13 +1,13 @@
 {
-  "name": "statext",
-  "version": "0.0.13",
-  "description": "A tiny state management solution for React",
+  "name": "statext-logger",
+  "version": "0.0.2",
+  "description": "A logger component for statext",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "prepare": "npm run test && npm run build",
     "lint": "eslint ./src",
     "watch": "rollup --watch --config",
+    "prepare": "npm run test && npm run build",
     "build": "rollup --config"
   },
   "keywords": [
@@ -32,5 +32,8 @@
     "rollup": "^0.59.4",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "dependencies": {
+    "statext": "^0.0.13"
   }
 }

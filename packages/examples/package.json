@@ -1,6 +1,6 @@
 {
   "name": "examples",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -12,8 +12,8 @@
     "react-scripts": "1.1.4",
     "reselect": "^3.0.1",
     "simple-cache-provider": "^0.6.0",
-    "statext": "^0.0.12",
-    "statext-redux": "^0.0.3"
+    "statext": "^0.0.13",
+    "statext-redux": "^0.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

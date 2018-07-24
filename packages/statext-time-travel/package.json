@@ -1,6 +1,6 @@
 {
   "name": "statext-time-travel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A  time travel component for statext",
   "main": "dist/index.js",
   "scripts": {
@@ -34,6 +34,6 @@
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "dependencies": {
-    "statext": "^0.0.12"
+    "statext": "^0.0.13"
   }
 }
