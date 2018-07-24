@@ -252,50 +252,8 @@ StatextProvider.propTypes = {
 };
 StatextProvider.defaultProps = { middleware: [] };
 
-var Logger = function (_React$Component) {
-  inherits(Logger, _React$Component);
-
-  function Logger() {
-    classCallCheck(this, Logger);
-    return possibleConstructorReturn(this, (Logger.__proto__ || Object.getPrototypeOf(Logger)).apply(this, arguments));
-  }
-
-  createClass(Logger, [{
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate(_ref) {
-      var store = _ref.statext__.store;
-
-      this.props.statext__.store.forEach(function (v, k) {
-        if (v !== store.get(k)) {
-          /* eslint-disable no-console */
-          console.group(k.displayName || k.name);
-          console.log('From', store.get(k));
-          console.log('To', v);
-          console.groupEnd();
-          /* eslint-enable no-console */
-        }
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return null;
-    }
-  }]);
-  return Logger;
-}(React__default.Component);
-
-Logger.propTypes = {
-  statext__: PropTypes.object.isRequired
-};
-
-
-var Logger_ = withStatext(Logger);
-
 var withSharedState$1 = withSharedState_;
 var Provider$1 = StatextProvider;
-var Logger$1 = Logger_;
 
 exports.withSharedState = withSharedState$1;
 exports.Provider = Provider$1;
-exports.Logger = Logger$1;

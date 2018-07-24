@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStatext } from './withSharedState'
+import { withStatext } from 'statext'
 
 class Logger extends React.Component {
   static propTypes = {
