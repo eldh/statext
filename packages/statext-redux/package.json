@@ -1,6 +1,6 @@
 {
   "name": "statext-redux",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utils for using redux reducers and actions with statext",
   "main": "dist/index.js",
   "scripts": {
@@ -35,6 +35,6 @@
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "dependencies": {
-    "statext": "^0.0.11"
+    "statext": "^0.0.12"
   }
 }
