@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStatext } from './withSharedState'
+import { withStatext } from 'statext'
 
 const buttonStyle = {
   width: '30px',

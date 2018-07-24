@@ -2,7 +2,9 @@
   "name": "statext-repo",
   "version": "0.0.8",
   "description": "A tiny state management solution for React",
-  "scripts": {},
+  "scripts": {
+    "build": "lerna run build"
+  },
   "private": true,
   "workspaces": [
     "packages/*"

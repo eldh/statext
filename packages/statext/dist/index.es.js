@@ -80,20 +80,6 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-var toArray = function (arr) {
-  return Array.isArray(arr) ? arr : Array.from(arr);
-};
-
-var toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
 function withStatext(Compo) {
   return function (_React$Component) {
     inherits(WithStatextContext, _React$Component);
@@ -299,127 +285,8 @@ Logger.propTypes = {
 
 var Logger_ = withStatext(Logger);
 
-var buttonStyle = {
-  width: '30px',
-  height: '30px',
-  border: 0,
-  backgroundColor: 'rgba(0,0,0,0.2)',
-  color: '#fff',
-  appearence: 'none',
-  fontWeight: 900
-};
-
-var wrapperStyle = {
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  translateZ: 0,
-  zIndex: 2000
-};
-
-var TimeTravel = function (_React$Component) {
-  inherits(TimeTravel, _React$Component);
-
-  function TimeTravel() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    classCallCheck(this, TimeTravel);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = TimeTravel.__proto__ || Object.getPrototypeOf(TimeTravel)).call.apply(_ref, [this].concat(args))), _this), _this.state = { past: _this.props.statext__.store ? [_this.props.statext__.store] : [], future: [] }, _temp), possibleConstructorReturn(_this, _ret);
-  }
-
-  createClass(TimeTravel, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return React.createElement(
-        'div',
-        { style: wrapperStyle },
-        React.createElement(
-          'button',
-          {
-            disabled: this.state.past.length < 2,
-            onClick: function onClick() {
-              var previousStore = _this2.state.past[_this2.state.past.length - 2];
-              previousStore && previousStore.size && _this2.setState(function (_ref2) {
-                var past = _ref2.past,
-                    future = _ref2.future;
-
-                var newpast = [].concat(toConsumableArray(past));
-                var a = newpast.pop();
-                var newfuture = [a].concat(toConsumableArray(future));
-                return { past: newpast, future: newfuture, iDidThis: true };
-              }, function () {
-                return _this2.props.statext__.setStore(previousStore);
-              });
-            },
-            style: buttonStyle
-          },
-          '<'
-        ),
-        React.createElement(
-          'button',
-          {
-            disabled: this.state.future.length === 0,
-            onClick: function onClick() {
-              var nextStore = void 0;
-              _this2.setState(function (_ref3) {
-                var future = _ref3.future;
-
-                var _future = toArray(future),
-                    next = _future[0],
-                    newfuture = _future.slice(1);
-
-                nextStore = next;
-                return { future: newfuture, iDidThis: true };
-              }, function () {
-                return _this2.props.statext__.setStore(nextStore);
-              });
-            },
-            style: buttonStyle
-          },
-          '>'
-        )
-      );
-    }
-  }], [{
-    key: 'getDerivedStateFromProps',
-    value: function getDerivedStateFromProps(_ref4, _ref5) {
-      var store = _ref4.statext__.store;
-      var past = _ref5.past,
-          future = _ref5.future,
-          iDidThis = _ref5.iDidThis;
-
-      if (store && store !== past[past.length - 1]) return { past: [].concat(toConsumableArray(past), [store]), iDidThis: false, future: iDidThis ? future : [] };
-      return null;
-    }
-  }]);
-  return TimeTravel;
-}(React.Component);
-
-TimeTravel.propTypes = {
-  statext__: PropTypes.shape({
-    store: PropTypes.object.isRequired,
-    setStore: PropTypes.func.isRequired
-  })
-};
-
-
-var TimeTravel_ = withStatext(TimeTravel);
-
 var withSharedState$1 = withSharedState_;
 var Provider$1 = StatextProvider;
 var Logger$1 = Logger_;
-var TimeTravel$1 = TimeTravel_;
 
-export { withSharedState$1 as withSharedState, Provider$1 as Provider, Logger$1 as Logger, TimeTravel$1 as TimeTravel };
+export { withSharedState$1 as withSharedState, Provider$1 as Provider, Logger$1 as Logger };

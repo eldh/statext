@@ -1,0 +1,39 @@
+{
+  "name": "statext-time-travel",
+  "version": "0.0.1",
+  "description": "A  time travel component for statext",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ./src",
+    "watch": "rollup --watch --config",
+    "prepare": "npm run test && npm run build",
+    "build": "rollup --config"
+  },
+  "keywords": [
+    "react",
+    "state",
+    "management",
+    "state management"
+  ],
+  "author": "eldh",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">16.3.0"
+  },
+  "devDependencies": {
+    "@dooer/eslint-config-dooer": "^4.3.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.19.0",
+    "jest": "^23.0.1",
+    "rollup": "^0.59.4",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "dependencies": {
+    "statext": "^0.0.11"
+  }
+}
