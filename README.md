@@ -3,12 +3,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Statext
 
-A tiny global state management solution for React.
+A tiny global state management solution for React. Made for suspense & async rendering.
 
 ## Why?
 React has a great mechanism for state management with its component state and props. In some cases you want to share pieces of information across different parts of the app, and then using just normal state and props becomes cumbersome. This is commonly solved by using state libraries like redux or mobx. 
 
-However, these frameworks work outside the React component model and can feel heavy for simpler tasks.
+However, these frameworks work outside the React component model and can feel heavy for simpler tasks. It's also unclear how they will work together with React's upcoming Suspense feature and async rendering.
 
 Statext tries to provide a state management solution that feels lightweight and doesn't stray too far from the React way of doing things.
 
