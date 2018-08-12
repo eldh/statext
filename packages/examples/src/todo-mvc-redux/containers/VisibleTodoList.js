@@ -12,7 +12,10 @@ const mapStateToProps = state => ({
 const VisibleTodoList = () => (
   <FilteredTodoState>
     {({ dispatch, state }) => (
-      <TodoList actions={bindActionsToDispatch(dispatch, actionCreators)} {...mapStateToProps(state)} />
+      <TodoList
+        actions={bindActionsToDispatch(dispatch, actionCreators)}
+        {...mapStateToProps(state)}
+      />
     )}
   </FilteredTodoState>
 )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRenderer } from 'react-test-renderer/shallow';
+import { createRenderer } from 'react-test-renderer/shallow'
 import TodoList from './TodoList'
 import TodoItem from './TodoItem'
 
@@ -9,29 +9,30 @@ const setup = () => {
       {
         text: 'Use Redux',
         completed: false,
-        id: 0
-      }, {
+        id: 0,
+      },
+      {
         text: 'Run the tests',
         completed: true,
-        id: 1
-      }
+        id: 1,
+      },
     ],
     actions: {
       editTodo: jest.fn(),
       deleteTodo: jest.fn(),
       completeTodo: jest.fn(),
       completeAll: jest.fn(),
-      clearCompleted: jest.fn()
-    }
+      clearCompleted: jest.fn(),
+    },
   }
 
-  const renderer = createRenderer();
+  const renderer = createRenderer()
   renderer.render(<TodoList {...props} />)
   const output = renderer.getRenderOutput()
 
   return {
     props: props,
-    output: output
+    output: output,
   }
 }
 

@@ -14,7 +14,10 @@ export default function MainSectionContainer() {
   return (
     <FilteredTodoState>
       {({ dispatch, state }) => (
-        <MainSection actions={bindActionsToDispatch(dispatch, actionCreators)} {...mapStateToProps(state)} />
+        <MainSection
+          actions={bindActionsToDispatch(dispatch, actionCreators)}
+          {...mapStateToProps(state)}
+        />
       )}
     </FilteredTodoState>
   )

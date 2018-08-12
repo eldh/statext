@@ -10,7 +10,11 @@ export default function AsyncExample() {
     <div className={css({ paddingLeft: '20px', paddingRight: '20px' })}>
       <State>
         {({ subreddit, setSubreddit }) => (
-          <Picker onChange={setSubreddit} options={['reactjs', 'frontend']} value={subreddit} />
+          <Picker
+            onChange={setSubreddit}
+            options={['reactjs', 'frontend']}
+            value={subreddit}
+          />
         )}
       </State>
       <PostsFetcher>
@@ -36,7 +40,9 @@ export default function AsyncExample() {
                   <h2>{'Empty.'}</h2>
                 )
               ) : (
-                <div className={css({ opacity: isFetching ? 0.5 : 1 })}>{posts && <Posts posts={posts} />}</div>
+                <div className={css({ opacity: isFetching ? 0.5 : 1 })}>
+                  {posts && <Posts posts={posts} />}
+                </div>
               )}
             </React.Fragment>
           )

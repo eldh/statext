@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions'
+import {
+  selectSubreddit,
+  fetchPostsIfNeeded,
+  invalidateSubreddit,
+} from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import State from '../state'
@@ -34,7 +38,9 @@ class App extends Component {
   handleRefreshClick = e => {
     e.preventDefault()
     const { dispatch, selectedSubreddit } = this.props
-    dispatch(invalidateSubreddit(selectedSubreddit), () => dispatch(fetchPostsIfNeeded(selectedSubreddit)))
+    dispatch(invalidateSubreddit(selectedSubreddit), () =>
+      dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    )
   }
 
   render() {
@@ -42,7 +48,11 @@ class App extends Component {
     const isEmpty = posts.length === 0
     return (
       <div className={css({ paddingLeft: '20px', paddingRight: '20px' })}>
-        <Picker onChange={this.handleChange} options={['reactjs', 'frontend']} value={selectedSubreddit} />
+        <Picker
+          onChange={this.handleChange}
+          options={['reactjs', 'frontend']}
+          value={selectedSubreddit}
+        />
         <p>
           {lastUpdated && (
             <span>
@@ -51,7 +61,9 @@ class App extends Component {
               {'. '}
             </span>
           )}
-          {!isFetching && <button onClick={this.handleRefreshClick}>{'Refresh'}</button>}
+          {!isFetching && (
+            <button onClick={this.handleRefreshClick}>{'Refresh'}</button>
+          )}
         </p>
         {isEmpty ? (
           isFetching ? (
@@ -71,7 +83,9 @@ class App extends Component {
 
 function mapStateToProps(state) {
   const { selectedSubreddit, postsBySubreddit } = state
-  const { isFetching, lastUpdated, items: posts } = postsBySubreddit[selectedSubreddit] || {
+  const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
+    selectedSubreddit
+  ] || {
     isFetching: true,
     items: [],
   }
@@ -85,5 +99,11 @@ function mapStateToProps(state) {
 }
 
 export default function Container() {
-  return <State>{({ state, dispatch }) => <App {...mapStateToProps(state)} dispatch={dispatch} />}</State>
+  return (
+    <State>
+      {({ state, dispatch }) => (
+        <App {...mapStateToProps(state)} dispatch={dispatch} />
+      )}
+    </State>
+  )
 }

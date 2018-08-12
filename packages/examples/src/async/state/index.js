@@ -12,7 +12,10 @@ class RedditState extends React.Component {
   setSubreddit = subreddit => this.setState(() => ({ subreddit }))
 
   render() {
-    return this.props.children({ subreddit: this.state.subreddit, setSubreddit: this.setSubreddit })
+    return this.props.children({
+      subreddit: this.state.subreddit,
+      setSubreddit: this.setSubreddit,
+    })
   }
 }
 

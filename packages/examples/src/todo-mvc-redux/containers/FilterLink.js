@@ -18,7 +18,11 @@ export default class FilterLink extends React.Component {
     return (
       <FilteredTodoState>
         {({ dispatch, state }) => (
-          <Link {...this.props} {...mapStateToProps(state, this.props)} {...mapDispatchToProps(dispatch, this.props)} />
+          <Link
+            {...this.props}
+            {...mapStateToProps(state, this.props)}
+            {...mapDispatchToProps(dispatch, this.props)}
+          />
         )}
       </FilteredTodoState>
     )

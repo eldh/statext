@@ -27,7 +27,12 @@ function Movie({
   onClick,
 }) {
   return (
-    <div className={`Movie box ${loading ? 'loading' : ''}`} onClick={() => onClick(id)} role="button" tabIndex="0">
+    <div
+      className={`Movie box ${loading ? 'loading' : ''}`}
+      onClick={() => onClick(id)}
+      role="button"
+      tabIndex="0"
+    >
       <div className="content">
         <div className="title">
           {title} {id}
@@ -51,7 +56,12 @@ export default function IndexPage({ onMovieClick, loadingMovieId }) {
           <h1>{'Top Box Office'}</h1>
           <div>
             {movies.map(infos => (
-              <Movie key={infos.id} {...infos} loading={infos.id === loadingMovieId} onClick={onMovieClick} />
+              <Movie
+                key={infos.id}
+                {...infos}
+                loading={infos.id === loadingMovieId}
+                onClick={onMovieClick}
+              />
             ))}
           </div>
         </div>

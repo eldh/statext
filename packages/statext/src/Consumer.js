@@ -7,7 +7,11 @@ class RestateConsumer extends Component {
     children: PropTypes.func.isRequired,
   }
   render() {
-    return <Consumer>{({ state, setState }) => this.props.children(state, setState)}</Consumer>
+    return (
+      <Consumer>
+        {({ state, setState }) => this.props.children(state, setState)}
+      </Consumer>
+    )
   }
 }
 

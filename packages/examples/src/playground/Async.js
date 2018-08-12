@@ -10,7 +10,9 @@ export default class Async extends React.Component {
             {loading && <p>{'Requested content:'}</p>}
             {fallback && <span>{'The content is still loading :('}</span>}
             {data && <div>{data}</div>}
-            <button onClick={requestData}>{data ? 'clear data' : 'load data'}</button>
+            <button onClick={requestData}>
+              {data ? 'clear data' : 'load data'}
+            </button>
           </React.Fragment>
         )}
       </AsyncState>

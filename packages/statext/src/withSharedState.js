@@ -6,7 +6,11 @@ import { Consumer } from './context'
 export function withStatext(Compo) {
   return class WithStatextContext extends React.Component {
     render() {
-      return <Consumer>{context => <Compo {...this.props} statext__={context} />}</Consumer>
+      return (
+        <Consumer>
+          {context => <Compo {...this.props} statext__={context} />}
+        </Consumer>
+      )
     }
   }
 }
@@ -46,7 +50,9 @@ function withSharedState(Compo) {
     }
     // eslint-disable-next-line camelcase
     unstable_deferredSetState = (nextState, cb) => {
-      ReactDOM.unstable_deferredUpdates(() => this.props.statext__.setState(nextState, cb, Compo))
+      ReactDOM.unstable_deferredUpdates(() =>
+        this.props.statext__.setState(nextState, cb, Compo)
+      )
     }
   }
 }

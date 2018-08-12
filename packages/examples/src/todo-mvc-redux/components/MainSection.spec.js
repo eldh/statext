@@ -96,7 +96,9 @@ describe('components', () => {
           todosCount: 0,
           completedCount: 0,
         })
-        const renderedChildren = output.props.children.filter(item => item !== false)
+        const renderedChildren = output.props.children.filter(
+          item => item !== false
+        )
         expect(renderedChildren.length).toBe(1)
         expect(renderedChildren[0].type).toBe(VisibleTodoList)
       })

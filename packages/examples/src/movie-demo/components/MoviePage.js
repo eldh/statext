@@ -35,7 +35,11 @@ function MovieReviews({ movieId }) {
   return (
     <MovieReviewsLoader args={movieId} fallback={Spinner} timeout={500}>
       {({ value: reviews }) => (
-        <div className="MovieReviews">{reviews.map(review => <MovieReview key={review.id} {...review} />)}</div>
+        <div className="MovieReviews">
+          {reviews.map(review => (
+            <MovieReview key={review.id} {...review} />
+          ))}
+        </div>
       )}
     </MovieReviewsLoader>
   )
@@ -44,7 +48,9 @@ function MovieReviews({ movieId }) {
 function Img(props) {
   return (
     <ImageLoader args={props.src}>
-      {({ value: src }) => <img alt={props.alt || props.src} {...props} src={src} />}
+      {({ value: src }) => (
+        <img alt={props.alt || props.src} {...props} src={src} />
+      )}
     </ImageLoader>
   )
 }
@@ -60,8 +66,16 @@ function MovieDetails({ movieId }) {
           <div className="details">
             <h1>{title}</h1>
             <div className="ratings">
-              <Rating icon={ratings.critics_rating} label="Tomatometer" score={ratings.critics_score} />
-              <Rating icon={ratings.audience_rating} label="Audience" score={ratings.audience_score} />
+              <Rating
+                icon={ratings.critics_rating}
+                label="Tomatometer"
+                score={ratings.critics_score}
+              />
+              <Rating
+                icon={ratings.audience_rating}
+                label="Audience"
+                score={ratings.audience_score}
+              />
             </div>
             <div className="critic">
               <div className="small-title">{'Critics consensus'}</div>

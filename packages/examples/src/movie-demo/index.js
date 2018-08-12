@@ -14,7 +14,11 @@ export function AppSpinner() {
   )
 }
 function MoviePage(props) {
-  return <MoviePageLoader fallback={AppSpinner}>{({ value: Component }) => <Component {...props} />}</MoviePageLoader>
+  return (
+    <MoviePageLoader fallback={AppSpinner}>
+      {({ value: Component }) => <Component {...props} />}
+    </MoviePageLoader>
+  )
 }
 
 export default function App() {
@@ -27,7 +31,12 @@ export default function App() {
             return (
               <React.Fragment>
                 {showDetail && (
-                  <div className="back-link" onClick={showList} role="button" tabIndex="0">
+                  <div
+                    className="back-link"
+                    onClick={showList}
+                    role="button"
+                    tabIndex="0"
+                  >
                     {'➜'}
                   </div>
                 )}
@@ -35,7 +44,10 @@ export default function App() {
                   {showDetail ? (
                     <MoviePage movieId={currentMovieId} />
                   ) : (
-                    <IndexPage loadingMovieId={currentMovieId} onMovieClick={selectMovie} />
+                    <IndexPage
+                      loadingMovieId={currentMovieId}
+                      onMovieClick={selectMovie}
+                    />
                   )}
                 </Placeholder>
               </React.Fragment>

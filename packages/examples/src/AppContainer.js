@@ -20,7 +20,10 @@ const exampleMap = {
   [MOVIES]: { component: Movies, title: 'Movies' },
   [TODOMVC]: { component: TodoMVC, title: 'TodoMVC' },
   [ASYNC_REDUX]: { component: AsyncRedux, title: 'Async (statext-redux)' },
-  [TODOMVC_REDUX]: { component: TodoMVCRedux, title: 'TodoMVC (statext-redux)' },
+  [TODOMVC_REDUX]: {
+    component: TodoMVCRedux,
+    title: 'TodoMVC (statext-redux)',
+  },
   [PLAYGROUND]: { component: Playground, title: 'Playground' },
 }
 
@@ -40,7 +43,11 @@ function Links() {
       })}
     >
       {Object.keys(exampleMap).map(k => (
-        <Link className={css({ color: 'white', marginBottom: '10px' })} key={k} to={k}>
+        <Link
+          className={css({ color: 'white', marginBottom: '10px' })}
+          key={k}
+          to={k}
+        >
           {exampleMap[k].title}
         </Link>
       ))}
@@ -68,7 +75,13 @@ export default function App() {
         >
           <Switch>
             <Route component={IndexRoute} exact path="/" />
-            {Object.keys(exampleMap).map(k => <Route component={exampleMap[k].component} key={k} path={'/' + k} />)}
+            {Object.keys(exampleMap).map(k => (
+              <Route
+                component={exampleMap[k].component}
+                key={k}
+                path={'/' + k}
+              />
+            ))}
           </Switch>
         </div>
       </div>

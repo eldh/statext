@@ -7,7 +7,8 @@ import { Placeholder } from './movie-demo/placeholder'
 export function createLoader(loadFn, getCacheKey, name) {
   const ongoing = {}
 
-  const displayName = name || (typeof getCacheKey === 'string' ? getCacheKey : 'LoaderCache')
+  const displayName =
+    name || (typeof getCacheKey === 'string' ? getCacheKey : 'LoaderCache')
 
   class LoaderCache extends React.Component {
     static propTypes = {
@@ -22,7 +23,8 @@ export function createLoader(loadFn, getCacheKey, name) {
 
     load = () => {
       const { refetchAt, args } = this.props
-      const key = typeof getCacheKey === 'function' ? getCacheKey(args) : getCacheKey
+      const key =
+        typeof getCacheKey === 'function' ? getCacheKey(args) : getCacheKey
 
       const lastUpdated = this.state[key] && this.state[key].lastUpdated
       const hasValue = !!lastUpdated
@@ -35,7 +37,9 @@ export function createLoader(loadFn, getCacheKey, name) {
         ongoing[key] ||
         loadFn(...(Array.isArray(args) ? args : [args]))
           .then(value => {
-            this.unstable_deferredSetState({ [key]: { value, lastUpdated: Date.now() } })
+            this.unstable_deferredSetState({
+              [key]: { value, lastUpdated: Date.now() },
+            })
             delete ongoing[key]
           })
           .catch(error => {
@@ -94,7 +98,12 @@ export function createLoader(loadFn, getCacheKey, name) {
       const { loading, showLoader, refetchAt } = this.state
       const { children, args } = this.props
       return loading || showLoader ? (
-        <StatextCache args={args} getCacheKey={getCacheKey} loadFn={loadFn} refetchAt={refetchAt}>
+        <StatextCache
+          args={args}
+          getCacheKey={getCacheKey}
+          loadFn={loadFn}
+          refetchAt={refetchAt}
+        >
           {res =>
             children({
               ...res,

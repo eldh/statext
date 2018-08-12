@@ -14,24 +14,40 @@ class TodoState extends React.Component {
   addTodo = text => {
     if (text.length !== 0) {
       this.setState(({ todos }) => ({
-        todos: [{ text, id: todos.length > 0 ? todos[0].id + 1 : 0, completed: false }, ...todos],
+        todos: [
+          {
+            text,
+            id: todos.length > 0 ? todos[0].id + 1 : 0,
+            completed: false,
+          },
+          ...todos,
+        ],
       }))
     }
   }
 
   removeTodo = removeId => {
-    this.setState(({ todos }) => ({ todos: todos.filter(({ id }) => id !== removeId) }))
+    this.setState(({ todos }) => ({
+      todos: todos.filter(({ id }) => id !== removeId),
+    }))
   }
 
   completeTodo = completeId => {
     this.setState(({ todos }) => ({
-      todos: todos.map(todo => (todo.id === completeId ? { ...todo, completed: !todo.completed } : todo)),
+      todos: todos.map(
+        todo =>
+          todo.id === completeId
+            ? { ...todo, completed: !todo.completed }
+            : todo
+      ),
     }))
   }
 
   editTodo = edited => {
     this.setState(({ todos }) => ({
-      todos: todos.map(todo => (todo.id === edited.id ? { ...todo, ...edited } : todo)),
+      todos: todos.map(
+        todo => (todo.id === edited.id ? { ...todo, ...edited } : todo)
+      ),
     }))
   }
 

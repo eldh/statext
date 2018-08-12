@@ -7,8 +7,17 @@ class AuthInfo extends React.Component {
     return (
       <AuthState>
         {({ loading, authenticated }) => (
-          <div className={css({ padding: '10px', color: loading ? 'orange' : authenticated ? 'green' : 'red' })}>
-            {loading ? 'Authenticating...' : authenticated ? 'Authenticated' : 'Not authenticated'}
+          <div
+            className={css({
+              padding: '10px',
+              color: loading ? 'orange' : authenticated ? 'green' : 'red',
+            })}
+          >
+            {loading
+              ? 'Authenticating...'
+              : authenticated
+                ? 'Authenticated'
+                : 'Not authenticated'}
           </div>
         )}
       </AuthState>

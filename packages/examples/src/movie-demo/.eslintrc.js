@@ -1,5 +1,5 @@
 module.exports = {
-    rules: {
-        'react/prop-types': 0,
-    }
+  rules: {
+    'react/prop-types': 0,
+  },
 }

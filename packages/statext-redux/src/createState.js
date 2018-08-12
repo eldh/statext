@@ -46,7 +46,10 @@ export function createState(reducers, middlewares) {
     dispatch = applyMiddleware(middlewares, this.getState, this.commit)
 
     render() {
-      return this.props.children({ state: this.state.state, dispatch: this.dispatch })
+      return this.props.children({
+        state: this.state.state,
+        dispatch: this.dispatch,
+      })
     }
   }
   return withSharedState(ReduxState)

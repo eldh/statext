@@ -7,7 +7,11 @@ import TodoState from '../states/TodoState'
 function ToggleAll({ completedCount, todos, completeAll }) {
   return todos.length > 0 ? (
     <span>
-      <input checked={completedCount === todos.length} className="toggle-all" type="checkbox" />
+      <input
+        checked={completedCount === todos.length}
+        className="toggle-all"
+        type="checkbox"
+      />
       <span onClick={completeAll} role="button" tabIndex={0} />
     </span>
   ) : null
@@ -30,13 +34,35 @@ export default class MainSection extends Component {
   render() {
     return (
       <TodoState>
-        {({ todos, completeAll, completeTodo, clearCompleted, editTodo, removeTodo }) => {
-          const completedCount = todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0)
+        {({
+          todos,
+          completeAll,
+          completeTodo,
+          clearCompleted,
+          editTodo,
+          removeTodo,
+        }) => {
+          const completedCount = todos.reduce(
+            (count, todo) => (todo.completed ? count + 1 : count),
+            0
+          )
           return (
             <section className="main">
-              <ToggleAll completeAll={completeAll} completedCount={completedCount} todos={todos} />
-              <TodoList completeTodo={completeTodo} editTodo={editTodo} removeTodo={removeTodo} />
-              <TodosFooter clearCompleted={clearCompleted} completedCount={completedCount} todos={todos} />
+              <ToggleAll
+                completeAll={completeAll}
+                completedCount={completedCount}
+                todos={todos}
+              />
+              <TodoList
+                completeTodo={completeTodo}
+                editTodo={editTodo}
+                removeTodo={removeTodo}
+              />
+              <TodosFooter
+                clearCompleted={clearCompleted}
+                completedCount={completedCount}
+                todos={todos}
+              />
             </section>
           )
         }}

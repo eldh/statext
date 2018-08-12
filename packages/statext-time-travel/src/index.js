@@ -30,7 +30,10 @@ class TimeTravel extends React.Component {
       setStore: PropTypes.func.isRequired,
     }),
   }
-  state = { past: this.props.statext__.store ? [this.props.statext__.store] : [], future: [] }
+  state = {
+    past: this.props.statext__.store ? [this.props.statext__.store] : [],
+    future: [],
+  }
 
   static getDerivedStateFromProps(
     {
@@ -39,7 +42,11 @@ class TimeTravel extends React.Component {
     { past, future, iDidThis }
   ) {
     if (store && store !== past[past.length - 1])
-      return { past: [...past, store], iDidThis: false, future: iDidThis ? future : [] }
+      return {
+        past: [...past, store],
+        iDidThis: false,
+        future: iDidThis ? future : [],
+      }
     return null
   }
 

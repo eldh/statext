@@ -15,7 +15,9 @@ async function readBodyAndDecode(response) {
 
 async function scrapePage(pathIn) {
   const path = pathIn.startsWith('/') ? pathIn.slice(1) : pathIn
-  const response = await global.fetch(`${CORS_PROXY_URL}/https://www.rottentomatoes.com/${path}`)
+  const response = await global.fetch(
+    `${CORS_PROXY_URL}/https://www.rottentomatoes.com/${path}`
+  )
   return responseAsDOM(response)
 }
 
@@ -31,7 +33,9 @@ export async function fetchMovies() {
 }
 
 export async function fetchMovieDetails(id) {
-  const response = await global.fetch(`https://www.rottentomatoes.com/api/private/v1.0/movies/${id}.json`)
+  const response = await global.fetch(
+    `https://www.rottentomatoes.com/api/private/v1.0/movies/${id}.json`
+  )
   const text = await readBodyAndDecode(response)
 
   return JSON.parse(text)

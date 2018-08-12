@@ -11,7 +11,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "reselect": "^3.0.1",
-    "simple-cache-provider": "^0.6.0",
+    "simple-cache-provider": "^0.7.0",
     "statext": "^0.0.13",
     "statext-redux": "^0.0.4"
   },

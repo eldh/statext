@@ -8,7 +8,13 @@ export default class Header extends Component {
       <header className="header">
         <h1>{'todos'}</h1>
         <TodoState>
-          {({ addTodo }) => <TodoTextInput newTodo onSave={addTodo} placeholder="What needs to be done?" />}
+          {({ addTodo }) => (
+            <TodoTextInput
+              newTodo
+              onSave={addTodo}
+              placeholder="What needs to be done?"
+            />
+          )}
         </TodoState>
       </header>
     )

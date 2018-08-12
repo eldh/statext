@@ -1,6 +1,6 @@
 /**
  * @jest-environment node
  */
-it('renders without crashing', () => {
+test('renders without crashing', () => {
   expect(true).toBe(true)
 })

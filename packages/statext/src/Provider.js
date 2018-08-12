@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import { Provider } from './context'
 
 const compose = (fns, extra) =>
-  fns.reduce((prevFn, nextFn) => value => nextFn(prevFn(value, extra), extra), value => value)
+  fns.reduce(
+    (prevFn, nextFn) => value => nextFn(prevFn(value, extra), extra),
+    value => value
+  )
 class StatextProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -18,10 +21,14 @@ class StatextProvider extends Component {
           this.setState(({ store: oldStore }) => {
             const newStore = new Map(oldStore)
             const oldVal = newStore.get(comp) || {}
-            const val = typeof newStateInput === 'function' ? newStateInput(oldVal) : newStateInput
-            const valAfterMiddleware = compose(props.middleware, (newVal, newCb = cb) => setState(newVal, newCb, comp))(
-              val
-            )
+            const val =
+              typeof newStateInput === 'function'
+                ? newStateInput(oldVal)
+                : newStateInput
+            const valAfterMiddleware = compose(
+              props.middleware,
+              (newVal, newCb = cb) => setState(newVal, newCb, comp)
+            )(val)
             newStore.set(comp, { ...oldVal, ...valAfterMiddleware })
             return { store: newStore }
           }, cb)

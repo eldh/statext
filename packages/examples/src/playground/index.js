@@ -24,7 +24,9 @@ const CountState = withSharedState(
     }
 
     render() {
-      return this.props.render(this.state, { increaseCount: this.increaseCount })
+      return this.props.render(this.state, {
+        increaseCount: this.increaseCount,
+      })
     }
   }
 )
@@ -34,9 +36,15 @@ class App extends Component {
   render() {
     return (
       <div className={css({ padding: '20px' })}>
-        <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>{'Toggle unmount'}</button>
+        <button onClick={() => this.setState(s => ({ mounted: !s.mounted }))}>
+          {'Toggle unmount'}
+        </button>
         {this.state.mounted && (
-          <div className={css({ ' & *': { display: 'flex', flexDirection: 'column' } })}>
+          <div
+            className={css({
+              ' & *': { display: 'flex', flexDirection: 'column' },
+            })}
+          >
             <h2>{'AsyncState'}</h2>
             <Async />
             <AsyncState>
@@ -59,7 +67,9 @@ class App extends Component {
             <h2>{'CountState'}</h2>
             <CountState render={({ count }) => `The count is ${count}`} />
             <CountState
-              render={({ count }, { increaseCount }) => <button onClick={increaseCount}>{'Click me ' + count}</button>}
+              render={({ count }, { increaseCount }) => (
+                <button onClick={increaseCount}>{'Click me ' + count}</button>
+              )}
             />
           </div>
         )}
