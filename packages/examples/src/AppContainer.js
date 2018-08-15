@@ -1,5 +1,6 @@
 import React from 'react'
 import Async from './async'
+import Reducer from './reducer'
 import Playground from './playground'
 import TodoMVC from './todo-mvc'
 import TodoMVCRedux from './todo-mvc-redux'
@@ -14,6 +15,7 @@ const TODOMVC_REDUX = 'todo-mvc-redux'
 const ASYNC_REDUX = 'async-redux'
 const ASYNC = 'async'
 const MOVIES = 'movies'
+const REDUCER = 'reducer'
 
 const exampleMap = {
   [ASYNC]: { component: Async, title: 'Async' },
@@ -25,6 +27,7 @@ const exampleMap = {
     title: 'TodoMVC (statext-redux)',
   },
   [PLAYGROUND]: { component: Playground, title: 'Playground' },
+  [REDUCER]: { component: Reducer, title: 'Reducer' },
 }
 
 function Links() {
@@ -43,11 +46,7 @@ function Links() {
       })}
     >
       {Object.keys(exampleMap).map(k => (
-        <Link
-          className={css({ color: 'white', marginBottom: '10px' })}
-          key={k}
-          to={k}
-        >
+        <Link className={css({ color: 'white', marginBottom: '10px' })} key={k} to={k}>
           {exampleMap[k].title}
         </Link>
       ))}
@@ -63,7 +62,7 @@ function IndexRoute() {
   )
 }
 
-export default function App() {
+export default function AppContainer() {
   return (
     <Router>
       <div>
@@ -76,11 +75,7 @@ export default function App() {
           <Switch>
             <Route component={IndexRoute} exact path="/" />
             {Object.keys(exampleMap).map(k => (
-              <Route
-                component={exampleMap[k].component}
-                key={k}
-                path={'/' + k}
-              />
+              <Route component={exampleMap[k].component} key={k} path={'/' + k} />
             ))}
           </Switch>
         </div>

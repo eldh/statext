@@ -32,7 +32,7 @@ const fetchPosts = subreddit => dispatch => {
     .fetch(`https://www.reddit.com/r/${subreddit}.json`)
     .then(response => response.json())
     .then(json => dispatch(receivePosts(subreddit, json)))
-    .catch(console.error)
+    .catch(console.error) // eslint-disable-line no-console
 }
 
 const shouldFetchPosts = (state, subreddit) => {

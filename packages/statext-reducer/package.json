@@ -1,0 +1,39 @@
+{
+  "name": "statext-reducer",
+  "version": "0.0.1",
+  "description": "Utils for using reducers with statext",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "prepare": "npm run test && npm run build",
+    "lint": "eslint ./src",
+    "watch": "rollup --watch --config",
+    "build": "rollup --config"
+  },
+  "keywords": [
+    "react",
+    "reducer",
+    "statext",
+    "state",
+    "management",
+    "state management"
+  ],
+  "author": "eldh",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">16.3.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "jest": "^23.5.0",
+    "rollup": "^0.64.1",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "dependencies": {
+    "statext": "^0.0.13"
+  }
+}

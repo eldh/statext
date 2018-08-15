@@ -6,90 +6,29 @@ var _createContext = createContext('foo'),
     Provider = _createContext.Provider,
     Consumer = _createContext.Consumer;
 
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  return target;
-};
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-var objectWithoutProperties = function (obj, keys) {
-  var target = {};
-
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
-  }
-
-  return target;
-};
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function withStatext(Compo) {
   return function (_React$Component) {
-    inherits(WithStatextContext, _React$Component);
+    _inherits(WithStatextContext, _React$Component);
 
     function WithStatextContext() {
-      classCallCheck(this, WithStatextContext);
-      return possibleConstructorReturn(this, (WithStatextContext.__proto__ || Object.getPrototypeOf(WithStatextContext)).apply(this, arguments));
+      _classCallCheck(this, WithStatextContext);
+
+      return _possibleConstructorReturn(this, (WithStatextContext.__proto__ || Object.getPrototypeOf(WithStatextContext)).apply(this, arguments));
     }
 
-    createClass(WithStatextContext, [{
+    _createClass(WithStatextContext, [{
       key: 'render',
       value: function render() {
         var _this2 = this;
@@ -103,6 +42,7 @@ function withStatext(Compo) {
         );
       }
     }]);
+
     return WithStatextContext;
   }(React.Component);
 }
@@ -110,12 +50,12 @@ function withSharedState(Compo) {
   var _class, _temp;
 
   return _temp = _class = function (_Compo) {
-    inherits(RestateComponent, _Compo);
+    _inherits(RestateComponent, _Compo);
 
     function RestateComponent(props) {
-      classCallCheck(this, RestateComponent);
+      _classCallCheck(this, RestateComponent);
 
-      var _this3 = possibleConstructorReturn(this, (RestateComponent.__proto__ || Object.getPrototypeOf(RestateComponent)).call(this, props));
+      var _this3 = _possibleConstructorReturn(this, (RestateComponent.__proto__ || Object.getPrototypeOf(RestateComponent)).call(this, props));
 
       _this3.setState = function (nextState, cb) {
         _this3.props.statext__.setState(nextState, cb, Compo);
@@ -133,14 +73,15 @@ function withSharedState(Compo) {
       return _this3;
     }
 
-    createClass(RestateComponent, [{
+    _createClass(RestateComponent, [{
       key: 'shouldComponentUpdate',
       value: function shouldComponentUpdate(_ref) {
         var prevStore = _ref.statext__.store,
-            prevprops = objectWithoutProperties(_ref, ['statext__']);
+            prevprops = _objectWithoutProperties(_ref, ['statext__']);
+
         var _props = this.props,
             store = _props.statext__.store,
-            props = objectWithoutProperties(_props, ['statext__']);
+            props = _objectWithoutProperties(_props, ['statext__']);
 
         if (!prevStore || prevStore.get(Compo) !== store.get(Compo)) return true;
         for (var i in props) {
@@ -151,15 +92,16 @@ function withSharedState(Compo) {
       }
     }, {
       key: 'state',
-      get: function get$$1() {
+      get: function get() {
         return this.props.statext__.store.get(Compo) || this._state;
       },
-      set: function set$$1(newState) {
+      set: function set(newState) {
         this._state = newState;
       }
       // eslint-disable-next-line camelcase
 
     }]);
+
     return RestateComponent;
   }(Compo), _class.propTypes = {
     statext__: PropTypes.object.isRequired
@@ -169,6 +111,16 @@ function withSharedState(Compo) {
 var withSharedState_ = (function (compo) {
   return withStatext(withSharedState(compo));
 });
+
+var _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass$1 = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck$1(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn$1(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits$1(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var compose = function compose(fns, extra) {
   return fns.reduce(function (prevFn, nextFn) {
@@ -181,12 +133,12 @@ var compose = function compose(fns, extra) {
 };
 
 var StatextProvider = function (_Component) {
-  inherits(StatextProvider, _Component);
+  _inherits$1(StatextProvider, _Component);
 
   function StatextProvider(props) {
-    classCallCheck(this, StatextProvider);
+    _classCallCheck$1(this, StatextProvider);
 
-    var _this = possibleConstructorReturn(this, (StatextProvider.__proto__ || Object.getPrototypeOf(StatextProvider)).call(this, props));
+    var _this = _possibleConstructorReturn$1(this, (StatextProvider.__proto__ || Object.getPrototypeOf(StatextProvider)).call(this, props));
 
     function getStateSetter() {
       var wrapper = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (a) {
@@ -207,7 +159,7 @@ var StatextProvider = function (_Component) {
               var newCb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : cb;
               return setState(newVal, newCb, comp);
             })(val);
-            newStore.set(comp, _extends({}, oldVal, valAfterMiddleware));
+            newStore.set(comp, _extends$1({}, oldVal, valAfterMiddleware));
             return { store: newStore };
           }, cb);
         });
@@ -226,7 +178,7 @@ var StatextProvider = function (_Component) {
     return _this;
   }
 
-  createClass(StatextProvider, [{
+  _createClass$1(StatextProvider, [{
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -236,6 +188,7 @@ var StatextProvider = function (_Component) {
       );
     }
   }]);
+
   return StatextProvider;
 }(Component);
 

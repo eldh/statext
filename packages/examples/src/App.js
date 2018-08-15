@@ -1,5 +1,6 @@
 import React from 'react'
-import { Provider, Logger, TimeTravel } from 'statext'
+import { Provider } from 'statext'
+// import { Logger } from 'statext-logger'
 import AppContainer from './AppContainer'
 
 // function isPromise(object) {
@@ -13,19 +14,18 @@ import AppContainer from './AppContainer'
 //   return val
 // }
 
-class App extends React.Component {
+export default class App extends React.Component {
   state = { mounted: true }
   render() {
     return (
       <React.unstable_AsyncMode>
         <Provider>
-          <Logger />
-          <TimeTravel />
+          {/* <Logger /> */}
+          {/* 
+        <TimeTravel /> */}
           <AppContainer />
         </Provider>
       </React.unstable_AsyncMode>
     )
   }
 }
-
-export default App
